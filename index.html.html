@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>大家になろう ─ 300万円から純資産1億円を目指せ</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#f5f2eb;--surface:#fff;--border:#ddd8cc;--text:#2c2820;--muted:#9a9080;--gold:#b8860b;--green:#2d6a4f;--red:#8b2020;--blue:#1a4a7a;--accent:#fdf8ee;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;min-height:100vh;}
+#app{max-width:480px;margin:0 auto;padding-bottom:calc(100px + env(safe-area-inset-bottom));}
+.topbar{background:var(--text);color:#f5f2eb;padding:12px 14px 10px;position:sticky;top:0;z-index:20;}
+.topbar-row1{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.gtitle{font-size:16px;font-weight:700;}.dlbl{font-size:11px;opacity:.6;}
+.krow{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.kpi{background:rgba(255,255,255,.08);border-radius:4px;padding:6px 8px;}
+.klbl{font-size:9px;opacity:.5;margin-bottom:2px;letter-spacing:.04em;}
+.kval{font-size:14px;font-weight:700;}
+.kval.gold{color:#e6c35a;}.kval.grn{color:#6fcf97;}.kval.wh{color:#fff;}.kval.red{color:#ff7675;}
+.krow2{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:3px;}
+.kpi2{background:rgba(255,255,255,.05);border-radius:4px;padding:4px 8px;}
+.kval2{font-size:11px;font-weight:700;}
+.kval2.warn{color:#ffeaa7;}.kval2.ok{color:#6fcf97;}
+.savebar{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:var(--accent);border-bottom:1px solid var(--border);font-size:11px;color:var(--muted);}
+.savebtn{padding:5px 11px;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text);font-family:'Noto Sans JP',sans-serif;}
+.savebtn:hover{background:var(--accent);}.savebtn.dan{border-color:var(--red);color:var(--red);}
+.tabs{display:flex;background:#fff;border-bottom:2px solid var(--border);position:sticky;top:98px;z-index:15;}
+.tab{flex:1;padding:11px 0;text-align:center;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;}
+.tab.on{color:var(--text);border-bottom-color:var(--text);}
+.panel{display:none;padding:12px 12px 100px;}.panel.on{display:block;}
+.sh{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.pcard{background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;overflow:hidden;}
+.phead{display:flex;justify-content:space-between;align-items:center;padding:9px 12px 8px;border-bottom:1px solid var(--border);background:var(--accent);}
+.pname{font-size:13px;font-weight:700;}
+.pbadge{font-size:9px;background:var(--text);color:#fff;padding:2px 5px;border-radius:3px;margin-left:4px;}
+.peval{font-size:12px;font-weight:700;color:var(--muted);}
+.mgmt-bar{display:flex;align-items:center;justify-content:space-between;padding:5px 12px;border-bottom:1px solid var(--border);font-size:10px;}
+.mbadge-g{background:#e3f2fd;color:#0d47a1;padding:2px 7px;border-radius:3px;font-weight:700;}
+.mbadge-c{background:#e8f5e9;color:#1b5e20;padding:2px 7px;border-radius:3px;font-weight:700;}
+.mbadge-s{background:#fff3e0;color:#e65100;padding:2px 7px;border-radius:3px;font-weight:700;}
+.trust-bar-wrap{padding:6px 12px;border-bottom:1px solid var(--border);font-size:10px;color:var(--muted);}
+.trust-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:3px;}
+.trust-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .5s;}
+.vacancy-bar{background:#e3f2fd;border-top:1px solid #90caf9;padding:6px 12px;font-size:11px;color:#0d47a1;display:flex;justify-content:space-between;}
+.arrears-tag{display:inline-block;font-size:9px;padding:2px 6px;border-radius:3px;background:#fce4ec;color:#880e4f;font-weight:700;margin-left:5px;vertical-align:middle;}
+.arrears-bar{background:#fff5f5;border-top:1px solid #f8bbd0;padding:7px 12px;font-size:11px;color:var(--red);display:flex;justify-content:space-between;align-items:center;}
+.mets{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);}
+.mt{text-align:center;padding:7px 2px;border-right:1px solid var(--border);}.mt:last-child{border-right:none;}
+.mtl{font-size:9px;color:var(--muted);margin-bottom:2px;}.mtv{font-size:12px;font-weight:700;}
+.mtv.g{color:var(--green);}.mtv.r{color:var(--red);}.mtv.b{color:var(--blue);}
+.occw{padding:7px 12px 5px;}
+.occr{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:4px;}
+.occb{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.occf{height:100%;background:var(--green);border-radius:2px;transition:width .4s;}
+.occf.mid{background:#e67e22;}.occf.low{background:var(--red);}
+.reservew{padding:4px 12px 7px;display:flex;justify-content:space-between;font-size:10px;color:var(--muted);}
+.pacts{display:flex;border-top:1px solid var(--border);}
+.pabtn{flex:1;padding:9px 0;background:none;border:none;border-right:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text);cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
+.pabtn:last-child{border-right:none;}.pabtn:hover{background:var(--accent);}
+.mi{background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;padding:12px;}
+.mn{font-size:13px;font-weight:700;margin-bottom:3px;}
+.md{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:7px;}
+.mnums{display:flex;gap:10px;margin-bottom:7px;flex-wrap:wrap;}
+.mnum{font-size:11px;color:var(--muted);}.mnum span{font-size:12px;font-weight:700;color:var(--text);}
+.mbot{display:flex;justify-content:space-between;align-items:center;}
+.mprice{font-size:16px;font-weight:700;}.brow{display:flex;gap:5px;}
+.bb{padding:7px 12px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--text);font-family:'Noto Sans JP',sans-serif;}
+.bb.pri{background:var(--text);color:#fff;border-color:var(--text);}
+.bb.blu{background:var(--blue);color:#fff;border-color:var(--blue);}
+.bb:disabled{opacity:.3;cursor:not-allowed;}.bb:not(:disabled):hover{opacity:.85;}
+.lcard{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:8px;}
+.ltitle{font-size:13px;font-weight:700;margin-bottom:7px;}
+.lrow{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--border);}
+.lrow:last-of-type{border-bottom:none;}.ll{color:var(--muted);}
+.lv{font-weight:700;}.lv.r{color:var(--red);}.lv.g{color:var(--green);}.lv.b{color:var(--blue);}
+.logitem{display:flex;gap:7px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;line-height:1.5;}
+.licon{flex-shrink:0;font-size:14px;}.ltxt{color:var(--muted);}.ltxt strong{color:var(--text);}
+.ldate{font-size:10px;color:var(--muted);margin-right:4px;}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--bg);padding:10px 12px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--border);}
+.advbtn{width:100%;padding:14px;background:var(--text);color:var(--bg);border:none;border-radius:6px;font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.advbtn:hover{opacity:.85;}.advbtn.danger{background:var(--red);}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;display:flex;align-items:flex-end;justify-content:center;}
+.ov.hid{display:none;}
+.mdl{background:#fff;border-radius:14px 14px 0 0;padding:22px 16px 26px;width:100%;max-width:480px;animation:slideUp .22s ease;}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.mdltitle{font-size:15px;font-weight:700;margin-bottom:7px;}
+.mdlbody{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:16px;}
+.mdlbody strong{color:var(--text);}
+.mdlbtns{display:flex;gap:8px;flex-wrap:wrap;}
+.mb{flex:1;min-width:80px;padding:11px 8px;border-radius:6px;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--accent);color:var(--text);text-align:center;}
+.mb.pri{background:var(--text);color:#fff;border-color:var(--text);}
+.mb.dan{background:var(--red);color:#fff;border-color:var(--red);}
+.mb:hover{opacity:.85;}
+.tst{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:9px 18px;border-radius:20px;font-size:12px;font-weight:700;z-index:100;white-space:nowrap;max-width:320px;text-align:center;}
+.tst.hid{display:none;}
+.rank{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;margin-left:4px;}
+.rF{background:#fce4ec;color:#880e4f;}.rE{background:#e0e0e0;color:#555;}.rD{background:#c8e6c9;color:var(--green);}
+.rC{background:#bbdefb;color:var(--blue);}.rB{background:#fff9c4;color:#8b6914;}.rA{background:#ffe0b2;color:#8b4513;}.rS{background:#f8bbd0;color:#880e4f;}
+.empty{text-align:center;padding:28px 16px;color:var(--muted);font-size:13px;line-height:1.8;}
+.etag{display:inline-block;font-size:9px;padding:1px 6px;border-radius:3px;font-weight:700;margin-left:4px;vertical-align:middle;}
+.etag.ten{background:#fce4ec;color:#880e4f;}.etag.bld{background:#e3f2fd;color:#0d47a1;}.etag.ext{background:#e8f5e9;color:#1b5e20;}
+/* ── F2P: ボトムバー2段 ── */
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--bg);padding:8px 12px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--border);}
+.bottom-row1{display:flex;gap:6px;margin-bottom:6px;}
+.advbtn-sub{flex:1;padding:10px 0;background:#fff;color:var(--text);border:1.5px solid var(--gold);border-radius:6px;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;cursor:pointer;text-align:center;}
+.advbtn-sub.locked{background:var(--accent);color:var(--muted);border-color:var(--border);cursor:pointer;}
+.advbtn-sub.gold{background:linear-gradient(135deg,#b8860b,#e6c35a);color:#fff;border-color:#b8860b;}
+/* ── F2P: 課金プランモーダル ── */
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.plan-card{border:1.5px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;background:#fff;}
+.plan-card:hover{border-color:var(--gold);background:var(--accent);}
+.plan-card.featured{border-color:var(--gold);background:linear-gradient(135deg,#fffbf0,#fff8e8);}
+.plan-icon{font-size:24px;margin-bottom:4px;}
+.plan-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.plan-price{font-size:16px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.plan-desc{font-size:9px;color:var(--muted);line-height:1.5;}
+.plan-badge{font-size:8px;background:var(--gold);color:#fff;padding:1px 6px;border-radius:10px;display:inline-block;margin-bottom:5px;}
+/* ── F2P: セーブスロット ── */
+.slot-grid{display:flex;flex-direction:column;gap:6px;margin:8px 0;}
+.slot-row{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+.slot-num{font-size:10px;color:var(--muted);font-weight:700;min-width:20px;}
+.slot-info{flex:1;font-size:12px;}
+.slot-date{font-size:10px;color:var(--muted);}
+.slot-lock{font-size:16px;opacity:.4;}
+.slot-btn{padding:5px 10px;border-radius:4px;font-size:10px;font-weight:700;border:1px solid var(--border);background:var(--accent);cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
+.slot-btn.pri{background:var(--text);color:#fff;border-color:var(--text);}
+.slot-btn.gold{background:var(--gold);color:#fff;border-color:var(--gold);}
+/* ── F2P: 称号タブ ── */
+.title-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:4px;}
+.title-card{border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;background:#fff;}
+.title-card.unlocked{border-color:var(--gold);background:var(--accent);}
+.title-card.locked{opacity:.5;}
+.title-icon{font-size:20px;margin-bottom:3px;}
+.title-name{font-size:11px;font-weight:700;margin-bottom:2px;}
+.title-cond{font-size:9px;color:var(--muted);}
+.title-owned{font-size:9px;color:var(--gold);font-weight:700;margin-top:3px;}
+/* ── F2P: スタミナ表示 ── */
+.stamina-bar-wrap{padding:4px 12px 0;display:flex;align-items:center;gap:6px;}
+.stamina-label{font-size:9px;color:var(--muted);white-space:nowrap;}
+.stamina-bar{flex:1;height:4px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
+.stamina-fill{height:100%;background:#e6c35a;border-radius:2px;transition:width .4s;}
+.stamina-val{font-size:9px;color:#e6c35a;font-weight:700;white-space:nowrap;}
+/* ── 田中さん（NPC）セリフ ── */
+.tanaka-wrap{display:flex;gap:8px;align-items:flex-start;padding:8px 12px;background:#f0f4ff;border-top:1px solid #c8d4f0;margin-bottom:2px;}
+.tanaka-icon{width:26px;height:26px;border-radius:50%;background:#1a4a7a;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.tanaka-bubble{flex:1;}
+.tanaka-name{font-size:9px;color:#1a4a7a;font-weight:700;margin-bottom:2px;}
+.tanaka-text{font-size:11px;color:#2c2820;line-height:1.6;background:#fff;border:1px solid #c8d4f0;border-radius:0 8px 8px 8px;padding:6px 10px;}
+.danger-banner{background:#fff5f5;border:1px solid #ffaaaa;border-radius:6px;padding:10px 12px;margin-bottom:10px;font-size:12px;color:var(--red);line-height:1.5;font-weight:700;}
+.info-card{background:var(--accent);border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:8px;font-size:12px;line-height:1.6;}
+.proposal-card{background:linear-gradient(135deg,#fffbf0,#fff8e8);border:1.5px solid #c9a84c;border-radius:8px;margin-bottom:8px;overflow:hidden;}
+.proposal-head{padding:10px 12px 8px;border-bottom:1px solid #e8d5a0;display:flex;justify-content:space-between;align-items:flex-start;}
+.proposal-from{font-size:10px;color:#8b6914;font-weight:700;margin-bottom:3px;}
+.proposal-title{font-size:14px;font-weight:700;color:#5c4000;}
+.proposal-badge{font-size:9px;background:var(--gold);color:#fff;padding:3px 8px;border-radius:3px;font-weight:700;}
+.proposal-body{padding:10px 12px;}
+.proposal-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;}
+.pstat{text-align:center;background:rgba(255,255,255,.7);border-radius:4px;padding:6px 4px;}
+.pstat-l{font-size:9px;color:#8b6914;margin-bottom:2px;}
+.pstat-v{font-size:13px;font-weight:700;color:#5c4000;}
+.pstat-v.good{color:var(--green);}
+.proposal-lock{text-align:center;padding:10px 12px 12px;background:rgba(184,134,11,.06);border-top:1px solid #e8d5a0;}
+.lock-msg{font-size:12px;color:#8b6914;margin-bottom:8px;line-height:1.5;}
+.unlock-btn-gold{width:100%;padding:11px;background:var(--gold);color:#fff;border:none;border-radius:6px;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.unlock-btn-gold:hover{opacity:.85;}
+.trust-panel{background:#fffdf5;border:1px solid #c9a84c;border-radius:8px;padding:12px;margin-bottom:10px;}
+.trust-panel-title{font-size:12px;font-weight:700;color:#5c4000;margin-bottom:8px;}
+.trust-route{font-size:11px;color:#8b6914;margin-bottom:8px;}
+.trust-route-done{color:var(--green);font-weight:700;}
+.check{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid #c9a84c;text-align:center;line-height:14px;font-size:9px;background:#fff;margin-right:4px;}
+.check.done{background:var(--green);border-color:var(--green);color:#fff;}
+.mgmt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 4px;}
+.mgmt-opt{border:1px solid var(--border);border-radius:6px;padding:10px 6px 8px;text-align:center;cursor:pointer;transition:all .15s;}
+.mgmt-opt:hover{border-color:var(--text);}
+.mgmt-opt.sel-g{border:2px solid #1565c0;background:#e3f2fd;}
+.mgmt-opt.sel-c{border:2px solid #2e7d32;background:#e8f5e9;}
+.mgmt-opt.sel-s{border:2px solid #e65100;background:#fff3e0;}
+.mopt-name{font-size:11px;font-weight:700;margin-bottom:4px;}
+.mopt-rate{font-size:18px;font-weight:700;margin-bottom:4px;}
+.mopt-rate.g{color:#1565c0;}.mopt-rate.c{color:#2e7d32;}.mopt-rate.s{color:#e65100;}
+.mopt-tag{font-size:9px;padding:2px 6px;border-radius:3px;margin-bottom:5px;display:inline-block;}
+.mopt-tag.g{background:#e3f2fd;color:#0d47a1;}.mopt-tag.c{background:#e8f5e9;color:#1b5e20;}.mopt-tag.s{background:#fff3e0;color:#e65100;}
+.mopt-desc{font-size:9px;color:var(--muted);line-height:1.4;}
+.pacts-toggle{width:100%;padding:9px 12px;background:none;border:none;border-top:1px solid var(--border);font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;font-family:'Noto Sans JP',sans-serif;display:flex;justify-content:space-between;align-items:center;}
+.pacts-toggle:hover{background:var(--accent);}
+.pacts-body{display:none;border-top:1px solid var(--border);}
+.pacts-body.open{display:block;}
+.log-filter{padding:4px 10px;font-size:11px;font-weight:700;border-radius:20px;background:#fff;color:var(--muted);border:1px solid var(--border);cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
+.log-filter.on{background:var(--text);color:#fff;border-color:var(--text);}
+.log-filter:hover{opacity:.8;}
+.premium-badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:3px;font-weight:700;background:var(--gold);color:#fff;margin-left:5px;vertical-align:middle;}
+.premium-divider{display:flex;align-items:center;gap:8px;margin:4px 0 10px;font-size:10px;color:#b8973a;font-weight:700;}
+.premium-divider::before,.premium-divider::after{content:'';flex:1;height:1px;background:#c9a84c;opacity:.4;}
+.unlock-btn{padding:9px 22px;background:var(--gold);color:#fff;border:none;border-radius:5px;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;cursor:pointer;}
+.unlock-btn:hover{opacity:.85;}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="topbar">
+  <div class="topbar-row1"><div class="gtitle">大家になろう<span style="font-size:9px;font-weight:400;color:var(--muted);margin-left:6px">300万円から純資産1億円を目指せ</span></div><div class="dlbl" id="dl">2025年1月</div></div>
+  <div class="krow">
+    <div class="kpi"><div class="klbl">手持ち資金</div><div class="kval gold" id="kc">¥300万</div></div>
+    <div class="kpi"><div class="klbl">月次CF</div><div class="kval grn" id="km">±0</div></div>
+    <div class="kpi"><div class="klbl">純資産</div><div class="kval wh" id="ka">¥300万</div></div>
+  </div>
+  <div class="krow2">
+    <div class="kpi2"><div class="klbl">修繕積立</div><div class="kval2 ok" id="k-reserve">¥0</div></div>
+    <div class="kpi2"><div class="klbl">借入残高</div><div class="kval2 warn" id="k-debt">¥0</div></div>
+    <div class="kpi2"><div class="klbl">目標達成</div><div class="kval2" id="k-goal" style="color:#e6c35a">0%</div></div>
+  </div>
+  <div class="stamina-bar-wrap" id="stamina-wrap">
+    <span class="stamina-label">融資枠</span>
+    <div class="stamina-bar"><div class="stamina-fill" id="loan-bar-fill" style="width:0%;background:#6fcf97"></div></div>
+    <span class="stamina-val" id="loan-bar-label" style="font-size:8px;min-width:60px">計算中</span>
+  </div>
+</div>
+<div class="savebar">
+  <span id="save-status" style="font-size:10px">セーブデータなし</span>
+  <div style="display:flex;gap:5px;align-items:center;">
+    <button class="savebtn" onclick="showSaveSlots()">💾 セーブ管理</button>
+    <button class="savebtn" style="background:linear-gradient(135deg,#b8860b,#e6c35a);color:#fff;border-color:#b8860b;" onclick="showPremiumPlans()">👑 プレミアム</button>
+  </div>
+</div>
+<div class="tabs">
+  <div class="tab" onclick="sw('log')">日誌</div>
+  <div class="tab" onclick="sw('tax')">財務</div>
+  <div class="tab on" onclick="sw('owned')">所有物件</div>
+  <div class="tab" onclick="sw('market')">物件市場</div>
+  <div class="tab" onclick="sw('title')">称号</div>
+</div>
+<div class="panel on" id="panel-owned"><div class="sh">保有物件</div><div id="owned-list"></div></div>
+<div class="panel" id="panel-market"><div class="sh">購入可能物件</div><div id="market-list"></div></div>
+<div class="panel" id="panel-tax"><div class="sh">財務状況</div><div id="tax-content"></div></div>
+<div class="panel" id="panel-log">
+  <div style="display:flex;gap:6px;flex-wrap:wrap;padding:8px 12px 4px;border-bottom:1px solid var(--border);">
+    <button class="log-filter on" data-cat="all" onclick="setLogFilter('all')">すべて</button>
+    <button class="log-filter" data-cat="monthly" onclick="setLogFilter('monthly')">📅 月次</button>
+    <button class="log-filter" data-cat="event" onclick="setLogFilter('event')">⚡ イベント</button>
+    <button class="log-filter" data-cat="prop" onclick="setLogFilter('prop')">🏠 物件履歴</button>
+  </div>
+  <div id="log-list" style="padding-top:4px"></div>
+</div>
+<div class="panel" id="panel-title"><div class="sh">称号・実績</div><div id="title-content"></div></div>
+<div class="bottom">
+
+  <button class="advbtn" id="adv-btn" onclick="nextMonth()">▶ 1ヶ月進める</button>
+</div>
+</div>
+<div class="ov hid" id="ov"><div class="mdl"><div class="mdltitle" id="mt"></div><div class="mdlbody" id="mb"></div><div class="mdlbtns" id="mbtns"></div></div></div>
+<div class="tst hid" id="tst"></div>
+<script>
+const SAVE_KEY='ooya_v20';
+const SAVE_SLOTS=['ooya_v20_s1','ooya_v20_s2','ooya_v20_s3'];
+const GOAL=100000000;
+const GOAL2=300000000;
+const TRUST_MONTHS=24;
+const TRUST_COUNT=5;
+
+// ── プレミアム状態（localStorageで永続管理） ──
+const PREM_KEY='ooya_prem';
+function loadPrem(){try{return JSON.parse(localStorage.getItem(PREM_KEY)||'{}');}catch(e){return{};}}
+function savePrem(p){try{localStorage.setItem(PREM_KEY,JSON.stringify(p));}catch(e){}}
+let PREM=loadPrem();
+// PREM構造: { speed: true/false（月額課金中）, slots: true/false（買い切り）, titles: ['t1','t2',...] }
+function isPremSpeed(){return !!PREM.speed;}
+function isPremPack(){return !!(PREM.pack||PREM.premium);}
+function isPremTitle(id){return (PREM.titles||[]).includes(id);}
+
+// ── 称号定義 ──
+const TITLE_DEFS=[
+  // ── 無料称号（条件達成で自動解放） ──
+  {id:'first_buy', icon:'🏚️', name:'初大家',       cond:'初めて物件を購入',              free:true,  check:()=>G.props.length>0||G.logs.some(l=>l.html&&l.html.includes('購入'))},
+  {id:'cf_plus',   icon:'💰', name:'黒字大家',      cond:'月次CFがプラスになる',           free:true,  check:()=>{const mi=G.props.reduce((s,p)=>{if(p.arrears>0||p.vacancyMonths>0)return s;return s+calcIncome(p).net;},0);const ml=G.props.reduce((s,p)=>s+(p.loan?Math.min(p.loan.mo,p.loan.rem):0),0);const mr=calcMonthlyReserve();return mi-ml-mr>0;}},
+  {id:'rank_c',    icon:'🏆', name:'中堅大家',      cond:'ランクCに到達（純資産2000万）',  free:true,  check:()=>['C','B','A','S'].includes(rank())},
+  {id:'rank_b',    icon:'🥈', name:'熟練大家',      cond:'ランクBに到達（純資産5000万）',  free:true,  check:()=>['B','A','S'].includes(rank())},
+  {id:'cleared',   icon:'🎉', name:'億り人',         cond:'純資産1億円を達成',              free:true,  check:()=>G.cleared},
+  // ── 有料称号（条件達成が必須＋¥300で刻印） ──
+  {id:'prem_owner',icon:'🏙️', name:'物件王',         cond:'管理会社提案物件を1件以上購入',    free:false, check:()=>G.props.some(p=>PROPOSAL_POOL.some(x=>x.id===p.defId))},
+  {id:'no_loan',   icon:'🔓', name:'無借金大家',     cond:'現金購入で物件を買ったことがある',  free:false, check:()=>G.cashBuyCount>0},
+  {id:'rank_s',    icon:'👑', name:'不動産王',       cond:'純資産3億円を達成',              free:false, check:()=>rank()==='S'},
+  {id:'survived',  icon:'🛡️', name:'修羅場くぐり',  cond:'純資産マイナスを経験、または手持ち資金が50万を下回った', free:false, check:()=>G.survivedCrisis===true||G.cashCrisis===true},
+];
+
+const G={cash:3000000,debt:0,month:1,year:2025,props:[],nid:1,logs:[],reserve:0,negMonths:0,gameOver:false,cleared:false,proposals:[],collectTotal:0,unlockedTitles:[],equippedTitle:null,survivedCrisis:false,crisisCount:0,cashCrisis:false,cashBuyCount:0,skipNextEvent:false,lastRank:'E',firstCFPlus:false,soldDefIds:[],soldProposals:[],bigEvent1Fired:false,bigEvent2Fired:false,bigEvent1Type:null,quakeMonthsLeft:0,crisisMonthsLeft:0,_propHintShown:false};
+const MGMT={collect:{id:'collect',name:'集金管理型',rate:0.05,col:'c',desc:'標準管理委託。信頼を積み重ねると特別提案が来る。',occFixed:false,eventMult:1.0,arrearsOk:true},self:{id:'self',name:'自主管理',rate:0.00,col:'s',desc:'管理料0円。トラブル対応は自分で。',occFixed:false,eventMult:1.6,arrearsOk:true}};
+const PROPOSAL_POOL=[
+  {id:'p2',icon:'🏢',name:'リノベ済み築古マンション',type:'特別',price:8000000,units:6,rent:78000,reserveRate:.10,appr:.002,desc:'管理会社が丁寧にリノベ済み。空室リスクが低い状態で引き渡し。',lr:.75,occInit:.95,cf_note:'+7万/月',eventRate:.10,vacancyMonths:2,rate:.030},
+  {id:'p3',icon:'🏘️',name:'大学近隣ワンルーム',type:'特別',price:12000000,units:10,rent:58000,reserveRate:.09,appr:.002,desc:'大学の近くで需要安定。管理会社が長年管理してきた優良物件。',lr:.8,occInit:.90,cf_note:'+9万/月',eventRate:.12,vacancyMonths:3,rate:.029},
+  {id:'p1',icon:'🏡',name:'駅近好立地アパート',type:'特別',price:18000000,units:8,rent:98000,reserveRate:.08,appr:.003,desc:'管理会社が仕入れた非公開物件。高入居率・安定CF。',lr:.8,occInit:.92,cf_note:'+12万/月',eventRate:.10,vacancyMonths:2,rate:.028},
+];
+const DEFS=[
+  {id:'old',icon:'🏚️',name:'築古アパート',type:'築古',price:900000,units:4,rent:35000,reserveRate:.15,appr:.000,desc:'格安で始めやすいが老朽化によるトラブルが多く管理の手間が大きい。',lr:.70,eventRate:.35,vacancyMonths:2,rate:.035},
+  {id:'studio',icon:'🏢',name:'ワンルームアパート',type:'WR',price:5000000,units:8,rent:52000,reserveRate:.08,appr:.001,desc:'単身者向け。回転率良好。築古で資金を貯めてから。',lr:.60,eventRate:.28,vacancyMonths:3,rate:.030},
+  {id:'share',icon:'🏠',name:'シェアハウス',type:'SH',price:9000000,units:12,rent:48000,reserveRate:.08,appr:.001,desc:'部屋数多く分散効果あり。管理の手間大。',lr:.55,eventRate:.35,vacancyMonths:4,rate:.032},
+  {id:'family',icon:'🏘️',name:'ファミリーアパート',type:'FML',price:25000000,units:8,rent:100000,reserveRate:.08,appr:.002,desc:'長期入居が多く安定。空室時のダメージ大。',lr:.55,eventRate:.22,vacancyMonths:4,rate:.028},
+  {id:'luxury',icon:'🏙️',name:'都心築浅マンション',type:'MID',price:35000000,units:8,rent:115000,reserveRate:.07,appr:.002,desc:'都心エリアの築浅物件。安定した需要と適度な利回り。無料で買える最上位クラス。',lr:.60,eventRate:.18,vacancyMonths:4,rate:.028},
+];
+const PREMIUM_DEFS=[];// 廃止：提案物件がプレミアム物件を兼ねる
+// ── プレミアム（買い切り¥980） ──
+const PACK_DEFS=[
+  {id:'parking',icon:'🅿️',name:'駐車場',type:'PARK',price:8000000,units:20,rent:15000,reserveRate:.04,appr:.001,desc:'20区画の月極駐車場。利回りは低めだが空室リスクが極めて少なく超安定型。',lr:.60,eventRate:.08,vacancyMonths:1,rate:.035},
+  {id:'minpaku',icon:'🏨',name:'民泊マンション',type:'STAY',price:18000000,units:4,rent:100000,reserveRate:.10,appr:.002,desc:'1室単価が高い旅行者向け短期賃貸。稼働率が季節で変動。高リスク・高リターン。',lr:.65,eventRate:.40,vacancyMonths:4,rate:.032},
+  {id:'shotengai',icon:'🏪',name:'商店街テナントビル',type:'SHOP',price:45000000,units:6,rent:180000,reserveRate:.07,appr:.003,desc:'景気に連動する店舗テナント型。高CFだが景気悪化で空室リスク大。商業イベント多め。',lr:.70,eventRate:.35,vacancyMonths:4,rate:.030},
+];
+const ARREARS_STEPS=[
+  {step:1,label:'滞納1ヶ月目',icon:'📩',desc:'催促の手紙を送りましたが、まだ支払いがありません。',opts:['今月は様子を見る（無料）','内容証明を送る（2万円）','弁護士に依頼する（15万円）']},
+  {step:2,label:'滞納2ヶ月目',icon:'📋',desc:'内容証明を送りましたが、それでも支払いがありません。',opts:['さらに様子を見る（無料）','弁護士に依頼する（15万円）']},
+  {step:3,label:'滞納3ヶ月目',icon:'⚖️',desc:'3ヶ月滞納が続いています。弁護士への依頼が必要です。',opts:['弁護士に依頼する（15万円）']},
+];
+const fmt=n=>{const s=n<0?'-':'';const a=Math.abs(n);if(a>=100000000)return s+'¥'+(a/100000000).toFixed(1)+'億';if(a>=10000)return s+'¥'+Math.round(a/10000)+'万';return s+'¥'+Math.round(a).toLocaleString();};
+const fmtM=n=>(n>=0?'+':'')+fmt(n);
+const EVENTS=[
+  // ── 入居者トラブル ──
+  {cat:'ten',icon:'🔇',title:'騒音クレーム',desc:p=>`<strong>${p.name}</strong>の入居者から夜中の騒音クレームが届きました。注意文で済ませるか、管理会社に依頼して確実に解決しますか？`,type:'choice',opts:['注意文を配布（無料・入居率-3%・再発リスク上昇）','管理会社に依頼（3万円・完全解決・入居率維持）'],selfOpts:['自分で直接注意（無料・入居率-5%・再発リスク大幅上昇）','注意文を配布（無料・入居率-3%・再発リスク上昇）','弁護士事務所に相談（5万円・完全解決・再発防止）'],effect:(p,c,isSelf)=>{if(isSelf){if(c===0){p.occ=Math.max(.2,p.occ-.05);p.eventRate=Math.min(.50,p.eventRate+.08);addLog('😓',`<strong>${p.name}</strong> 直接注意。険悪な雰囲気に。入居率-5%・再発リスク大幅上昇。`);}else if(c===1){p.occ=Math.max(.2,p.occ-.03);p.eventRate=Math.min(.50,p.eventRate+.05);addLog('📝',`<strong>${p.name}</strong> 注意文配布。入居率-3%・再発可能性あり。`);}else{G.cash-=50000;p.noiseResolved=true;addLog('✅',`<strong>${p.name}</strong> 弁護士相談で解決（5万円）。再発防止も確保。`);}}else{if(c===0){p.occ=Math.max(.2,p.occ-.03);p.eventRate=Math.min(.50,p.eventRate+.05);addLog('📝',`<strong>${p.name}</strong> 注意文配布。入居率-3%・再発可能性あり。`);}else{G.cash-=30000;p.noiseResolved=true;addLog('✅',`<strong>${p.name}</strong> 管理会社対応完了（3万円）。完全解決・入居率維持。`);}}}},
+  {cat:'ten',icon:'🚪',title:'入居者が夜逃げ',desc:p=>`<strong>${p.name}</strong>の入居者が突然失踪。残置物の処分が必要です。`,type:'choice',opts:['業者に依頼（8万円・すぐ募集開始）','自分で片付ける（無料・空室2ヶ月）'],effect:(p,c)=>{p.occ=Math.max(0,p.occ-1/p.units);if(c===0){const fr=Math.min(G.reserve,80000);G.reserve-=fr;G.cash-=80000-fr;addLog('🚪',`<strong>${p.name}</strong> 業者依頼で片付け完了（8万円・積立金${fmt(fr)}充当）。1室空室→すぐ募集開始。`);}else{p.vacancyMonths=(p.vacancyMonths||0)+2;addLog('🚪',`<strong>${p.name}</strong> 自力で片付け。1室空室・2ヶ月後に募集開始。`);}}},
+  {cat:'ten',icon:'🐾',title:'無断ペット飼育',desc:p=>`<strong>${p.name}</strong>でペット禁止なのに飼育が発覚しました。強制退去させるか、弁護士を通じて正式に解決しますか？`,type:'choice',opts:['退去を求める（無料・入居率-10%・空室+2ヶ月）','弁護士相談（5万円・完全解決・再発防止）'],effect:(p,c)=>{if(c===0){p.occ=Math.max(.2,p.occ-.10);p.vacancyMonths=(p.vacancyMonths||0)+2;addLog('🐾',`<strong>${p.name}</strong> 退去勧告。入居率-10%・空室2ヶ月の損失。`);}else{G.cash-=50000;p.noiseResolved=true;addLog('✅',`<strong>${p.name}</strong> 弁護士相談で完全解決（5万円）。再発防止も確保。`);}}},
+  {cat:'ten',icon:'👴',title:'孤独死の発生',desc:p=>`<strong>${p.name}</strong>で入居者が室内で亡くなっているのが発見されました。即座に原状回復して家賃を下げて募集するか、保険申請を待ちますか？`,type:'choice',opts:['即原状回復＋家賃-20%で再募集（30万円・翌月募集開始）','保険申請を待つ（無料・空室+5ヶ月）'],effect:(p,c)=>{if(c===0){G.cash-=300000;p.rent=Math.floor(p.rent*.80);addLog('👴',`<strong>${p.name}</strong> 即原状回復（30万円）。家賃-20%で翌月から再募集。`);}else{p.vacancyMonths=(p.vacancyMonths||0)+5;addLog('👴',`<strong>${p.name}</strong> 保険申請待ち。費用0円だが空室が5ヶ月延びた。`);}}},
+  // ── 建物トラブル ──
+  {cat:'bld',icon:'💧',title:'雨漏り発生',desc:p=>`<strong>${p.name}</strong>で雨漏りのクレームが届きました。応急処置で済ませるか、本格修繕で完全に解決しますか？`,type:'choice',opts:['応急処置（8万円・入居率-5%・再発リスク大幅上昇）','本格修繕（30万円・再発なし・入居率維持）'],effect:(p,c)=>{const cost=c===0?80000:300000;const fr=Math.min(G.reserve,cost);G.reserve-=fr;G.cash-=cost-fr;p.cooldown=p.cooldown||{};if(c===0){p.occ=Math.max(.2,p.occ-.05);p.eventRate=Math.min(.55,p.eventRate+.12);p.cooldown['雨漏り発生']=12;addLog('💧',`<strong>${p.name}</strong> 応急処置（${fmt(cost)}）。積立金${fmt(fr)}使用。入居率-5%・再発リスク大幅上昇。`);}else{p.leakResolved=true;p.eventRate=Math.max(.08,(p.eventRate||.28)-.06);addLog('💧',`<strong>${p.name}</strong> 本格修繕（${fmt(cost)}）。積立金${fmt(fr)}使用。完全解決・以後雨漏り再発なし。`);}}},
+  {cat:'bld',icon:'🚿',title:'給湯器が故障',desc:p=>`<strong>${p.name}</strong>で給湯器が壊れました。新品に交換するか、中古品で安く済ませますか？`,type:'choice',opts:['新品に交換（15万円・積立金充当あり・12ヶ月再発なし）','中古品で対応（5万円・積立金充当あり・早期再故障リスク）'],effect:(p,c)=>{p.cooldown=p.cooldown||{};if(c===0){const cost0=150000;const fr0=Math.min(G.reserve,cost0);G.reserve-=fr0;G.cash-=cost0-fr0;p.occ=Math.min(1,p.occ+.03);p.eventRate=Math.max(.08,(p.eventRate||.28)-.08);p.cooldown['給湯器が故障']=12;addLog('🚿',`<strong>${p.name}</strong> 新品給湯器に交換（15万円・積立金${fmt(fr0)}充当）。入居者満足度UP・12ヶ月再発なし。`);}else{const cost1=50000;const fr1=Math.min(G.reserve,cost1);G.reserve-=fr1;G.cash-=cost1-fr1;p.occ=Math.max(.2,p.occ-.05);p.eventRate=Math.min(.50,(p.eventRate||.28)+.08);p.cooldown['給湯器が故障']=3;addLog('🚿',`<strong>${p.name}</strong> 中古品で対応（5万円・積立金${fmt(fr1)}充当）。入居率-5%・再故障リスク大幅上昇。`);}}},
+  {cat:'bld',icon:'🏚️',title:'外壁劣化',desc:p=>`<strong>${p.name}</strong>の外壁がひどく劣化しました。全面修繕するか、塗装のみで延命しますか？`,type:'choice',opts:['全面修繕（200万円・評価額+3%・入居率+5%・再発なし）','塗装のみ（50万円・入居率-8%・12ヶ月後に再発リスク）'],effect:(p,c)=>{p.cooldown=p.cooldown||{};if(c===0){const cost=2000000;const fr=Math.min(G.reserve,cost);G.reserve-=fr;G.cash-=cost-fr;p.occ=Math.min(1,p.occ+.05);p.price=Math.floor(p.price*1.03);p.eventRate=Math.max(.10,(p.eventRate||.28)-.05);p.wallResolved=true;addLog('🏚️',`<strong>${p.name}</strong> 全面修繕（${fmt(cost)}）。積立金${fmt(fr)}使用。評価額+3%・入居率UP・以後外壁劣化再発なし。`);}else{const cost=500000;const fr=Math.min(G.reserve,cost);G.reserve-=fr;G.cash-=cost-fr;p.occ=Math.max(.2,p.occ-.08);p.eventRate=Math.min(.55,(p.eventRate||.28)+.12);p.cooldown['外壁劣化']=12;addLog('🏚️',`<strong>${p.name}</strong> 塗装のみ（${fmt(cost)}）。積立金${fmt(fr)}使用。入居率-8%・12ヶ月後に再発リスク。`);}}},
+  {cat:'bld',icon:'❄️',title:'エアコンが故障',desc:p=>`<strong>${p.name}</strong>でエアコンの故障が報告されました。新品に交換するか、修理で済ませますか？`,type:'choice',opts:['新品に交換（12万円・積立金充当あり・12ヶ月再発なし）','修理で対応（4万円・積立金充当あり・早期再故障リスク）'],effect:(p,c)=>{p.cooldown=p.cooldown||{};if(c===0){const cost0=120000;const fr0=Math.min(G.reserve,cost0);G.reserve-=fr0;G.cash-=cost0-fr0;p.occ=Math.min(1,p.occ+.02);p.eventRate=Math.max(.08,(p.eventRate||.28)-.08);p.cooldown['エアコンが故障']=12;addLog('❄️',`<strong>${p.name}</strong> 新品エアコンに交換（12万円・積立金${fmt(fr0)}充当）。入居者満足度UP・12ヶ月再発なし。`);}else{const cost1=40000;const fr1=Math.min(G.reserve,cost1);G.reserve-=fr1;G.cash-=cost1-fr1;p.occ=Math.max(.2,p.occ-.03);p.eventRate=Math.min(.50,(p.eventRate||.28)+.08);p.cooldown['エアコンが故障']=3;addLog('❄️',`<strong>${p.name}</strong> 修理で対応（4万円・積立金${fmt(fr1)}充当）。入居率-3%・再故障リスク大幅上昇。`);}}},
+  // ── 外部環境 ──
+  {cat:'ext',icon:'📈',title:'近隣が再開発',desc:p=>`<strong>${p.name}</strong>近辺で大規模再開発計画が発表されました。<br><br>現在の売却見込み額：<strong>${fmt(Math.floor(p.price*1.12))}</strong>（評価額+12%）<br><br>今すぐ売却してキャッシュ化しますか？それとも保有して値上がりを待ちますか？`,type:'choice',opts:['今すぐ売却する（評価額+12%・キャッシュ化）','保有して値上がりを待つ（評価額+8%・入居率+10%）'],effect:(p,c)=>{if(c===0){const sp=Math.floor(p.price*1.12);G.cash+=sp;if(p.loan&&p.loan.rem>0){G.cash-=p.loan.rem;G.debt=Math.max(0,G.debt-p.loan.rem);}if(!G.soldDefIds)G.soldDefIds=[];if(p.defId&&!G.soldDefIds.includes(p.defId))G.soldDefIds.push(p.defId);if(PROPOSAL_POOL.some(x=>x.id===p.defId)){if(!G.soldProposals)G.soldProposals=[];if(!G.soldProposals.includes(p.defId))G.soldProposals.push(p.defId);}G.props=G.props.filter(x=>x.id!==p.id);addLog('💴',`<strong>${p.name}</strong> 再開発前に売却（${fmt(sp)}）。`,'prop');render();}else{p.price=Math.floor(p.price*1.08);p.occ=Math.min(1,p.occ+.10);addLog('📈',`<strong>${p.name}</strong> 保有継続。評価額+8%・入居率+10%。`);}}},
+  {cat:'ext',icon:'📉',title:'競合物件が新築',types:['築古','WR','SH','FML','MID','特別','STAY','SHOP'],desc:p=>`<strong>${p.name}</strong>の近くに新築アパートが建ちました。リフォームで対抗するか、家賃を下げて入居者を繋ぎ止めますか？`,type:'choice',opts:p=>[`リフォームで対抗（${fmt(Math.floor(p.rent*p.units))}・入居率+5%）`,'家賃を下げて対抗（-5%永続・現金は減らない・入居率-3%）'],effect:(p,c)=>{if(c===0){const cost=Math.floor(p.rent*p.units);G.cash-=cost;p.occ=Math.min(1,p.occ+.05);addLog('🔨',`<strong>${p.name}</strong> リフォームで対抗（${fmt(cost)}）。入居率+5%。現金${fmt(cost)}の出費。`);}else{p.rent=Math.floor(p.rent*.95);p.occ=Math.max(.3,p.occ-.03);addLog('📉',`<strong>${p.name}</strong> 家賃-5%で対抗。現金は守ったが収入が永続的にダウン。`);}}},
+  {cat:'ext',icon:'🏦',title:'金利上昇',desc:p=>`日銀が利上げを発表。<strong>${p.name}</strong>のローン返済額が増加します。`,type:'choice',opts:p=>[p.loan&&p.loan.rem>0?`繰上返済する（${fmt(p.loan.mo*6)}を元本充当・完済が早まる）`:'繰上返済する（完済が早まる）','現金を温存する（月返済+10%・手元資金確保）'],effect:(p,c)=>{if(c===0){if(p.loan&&p.loan.rem>0){const prepay=p.loan.mo*6;if(G.cash>=prepay){G.cash-=prepay;p.loan.rem=Math.max(0,p.loan.rem-prepay);G.debt=Math.max(0,G.debt-prepay);addLog('🏦',`<strong>${p.name}</strong> 繰上返済（${fmt(prepay)}）。ローン残高が減り完済が早まる。`);}else{p.loan.mo=Math.floor(p.loan.mo*1.10);addLog('⚠️',`<strong>${p.name}</strong> 資金不足で繰上返済できず。月返済+10%。`);}}else{addLog('✅',`<strong>${p.name}</strong> ローンなし。金利上昇の影響なし。`);}}else{if(p.loan&&p.loan.rem>0){p.loan.mo=Math.floor(p.loan.mo*1.10);addLog('🏦',`<strong>${p.name}</strong> 現金温存。月返済+10%。手元資金は維持。`);}else{addLog('✅',`<strong>${p.name}</strong> ローンなし。金利上昇の影響なし。`);}}}},
+  {cat:'ext',icon:'🌪️',title:'台風・自然災害',desc:p=>`大型台風が直撃。<strong>${p.name}</strong>が被害を受けました。保険申請を待つか、自費で即修繕しますか？`,type:'choice',opts:['火災保険で申請（無料・空室+2ヶ月・入居率-15%）','自費で即修繕（35万円・積立金充当あり・入居率維持）'],effect:(p,c)=>{if(c===0){p.vacancyMonths=(p.vacancyMonths||0)+2;p.occ=Math.max(.2,p.occ-.15);addLog('📋',`<strong>${p.name}</strong> 保険申請。費用0円だが修繕待ち2ヶ月・入居率-15%。`);}else{const cost=350000;const fr=Math.min(G.reserve,cost);G.reserve-=fr;G.cash-=cost-fr;addLog('🌪️',`<strong>${p.name}</strong> 自費即修繕（35万円・積立金${fmt(fr)}充当）。翌月から通常営業。入居率維持。`);}}},
+  {cat:'ext',icon:'🎉',title:'人気エリアに認定',desc:p=>`<strong>${p.name}</strong>周辺がメディアで人気エリアとして紹介されました。`,type:'choice',opts:['家賃を値上げ（+8%・一部退去リスク・入居率-5%）','入居率優先・現状維持（入居率+10%）'],effect:(p,c)=>{if(c===0){p.rent=Math.floor(p.rent*1.08);p.price=Math.floor(p.price*1.03);p.occ=Math.max(.5,p.occ-.05);addLog('🎉',`<strong>${p.name}</strong> 人気エリア便乗値上げ。家賃+8%・評価額+3%。一部退去あり。`);}else{p.occ=Math.min(1,p.occ+.10);p.price=Math.floor(p.price*1.03);addLog('🎉',`<strong>${p.name}</strong> 現状維持。入居率+10%・評価額+3%。`);}}},
+  {cat:'ext',icon:'📦',title:'大手企業が近隣に進出',desc:p=>`<strong>${p.name}</strong>近辺に大手企業のオフィスが開設されました。`,type:'choice',opts:['家賃を値上げ（+10%・短期収益重視）','更新料無料で囲い込み（入居率+15%・長期安定重視）'],effect:(p,c)=>{if(c===0){p.rent=Math.floor(p.rent*1.10);p.occ=Math.min(1,p.occ+.08);addLog('📦',`<strong>${p.name}</strong> 家賃+10%・入居率+8%。短期収益を最大化。`);}else{p.occ=Math.min(1,p.occ+.15);addLog('🤝',`<strong>${p.name}</strong> 更新料無料で長期入居確保。入居率+15%。`);}}},
+  {cat:'ext',icon:'📰',title:'SNS・雑誌で紹介',desc:p=>`<strong>${p.name}</strong>周辺がSNSや雑誌でおしゃれエリアとして話題になりました。`,type:'choice',opts:['家賃を値上げ（+8%・話題が続く今が勝負）','満室優先・現状維持（入居率+12%・安定重視）'],effect:(p,c)=>{if(c===0){p.rent=Math.floor(p.rent*1.08);p.occ=Math.min(1,p.occ+.05);addLog('📰',`<strong>${p.name}</strong> 話題に乗り家賃+8%。`);}else{p.occ=Math.min(1,p.occ+.12);addLog('📰',`<strong>${p.name}</strong> 現状維持で満室優先。入居率+12%。`);}}},
+  // ── 商店街テナント専用 ──
+  {cat:'pack',icon:'🚪',title:'テナント閉店',desc:p=>`<strong>${p.name}</strong>のテナントが売上不振で退去を申し出ました。`,types:['SHOP'],type:'choice',opts:['退去を受け入れ（空室3ヶ月・次のテナントに期待）','家賃20%減で引き留め（収入ダウンだが空室回避）'],effect:(p,c)=>{if(c===0){p.occ=Math.max(.1,p.occ-.20);p.vacancyMonths=Math.max(p.vacancyMonths||0,3);addLog('🚪',`<strong>${p.name}</strong> テナント閉店受け入れ。空室3ヶ月。次のテナント次第。`);}else{p.rent=Math.floor(p.rent*.80);addLog('📉',`<strong>${p.name}</strong> 家賃20%減で引き留め。空室は回避したが月収ダウン。`);}}},
+  {cat:'pack',icon:'📈',title:'景気好況・賃料値上げ交渉',desc:p=>`好景気で<strong>${p.name}</strong>周辺の商業地価が上昇。`,types:['SHOP'],type:'choice',opts:['値上げ交渉（家賃+10%・退去リスクあり）','現状維持（関係良好・次回イベント確率-10%）'],effect:(p,c)=>{if(c===0){p.rent=Math.floor(p.rent*1.10);p.eventRate=Math.min(.55,p.eventRate+.08);addLog('📈',`<strong>${p.name}</strong> 賃料10%値上げ。テナント退去リスク上昇。`);}else{p.eventRate=Math.max(.10,p.eventRate-.10);addLog('🤝',`<strong>${p.name}</strong> 現状維持。信頼関係が深まりトラブル発生率低下。`);}}},
+  {cat:'pack',icon:'🏬',title:'競合SCが近隣に開業',desc:p=>`<strong>${p.name}</strong>近くに大型ショッピングモールが開業。商店街の客足が激減しました。即効性のある集客イベントで凌ぐか、エリアブランディングで長期的に差別化するか判断が必要です。`,types:['SHOP'],type:'choice',opts:['集客イベント開催（15万円・今月の入居率-5%に留める・次回も同じ問題が来る）','エリアブランディング（50万円・今月は入居率-10%・以後SCダメージ半減）'],effect:(p,c)=>{if(c===0){G.cash-=150000;p.occ=Math.max(.2,p.occ-.05);addLog('🏬',`<strong>${p.name}</strong> 集客イベント実施（15万円）。今月の入居率下落を最小化。ただし根本解決はしていない。`);}else{G.cash-=500000;p.occ=Math.max(.2,p.occ-.10);p.eventRate=Math.max(.10,p.eventRate-.15);addLog('🏬',`<strong>${p.name}</strong> エリアブランディング実施（50万円）。今月は入居率-10%だが、以後の競合SCダメージが大幅に減る。`);}}},
+  {cat:'pack',icon:'💬',title:'テナントから家賃減額交渉',desc:p=>`<strong>${p.name}</strong>のテナントから「売上が落ちているので家賃を下げてほしい」と交渉が来ました。受け入れるか、断るか判断が必要です。`,types:['SHOP'],type:'choice',opts:['受け入れる（家賃-15%・退去リスク回避・関係良好）','断る（家賃維持・退去リスクあり・入居率-15%の可能性）'],effect:(p,c)=>{if(c===0){p.rent=Math.floor(p.rent*.85);addLog('💬',`<strong>${p.name}</strong> 家賃15%減額を受け入れ。退去リスク回避・テナントとの関係良好。`);}else{if(Math.random()<0.5){addLog('💬',`<strong>${p.name}</strong> 減額交渉を断った。テナントは納得して営業継続。家賃維持。`);}else{p.occ=Math.max(.1,p.occ-.15);p.vacancyMonths=(p.vacancyMonths||0)+3;addLog('💬',`<strong>${p.name}</strong> 減額交渉を断ったところテナントが退去。空室3ヶ月の損失。`);}}  }},
+  // ── 民泊専用 ──
+  {cat:'pack',icon:'🌏',title:'外国人ゲストのトラブル',desc:p=>`<strong>${p.name}</strong>の外国人ゲストがゴミ出しルールを無視。近隣住民からクレームが届きました。安く済ませるか、管理会社と月額契約して根本解決しますか？`,types:['STAY'],type:'choice',opts:['多言語案内を自作（3万円・再発リスク継続）','管理会社と月額契約（初回10万円・毎月1万減収・トラブル率大幅低下）'],effect:(p,c)=>{if(c===0){G.cash-=30000;p.eventRate=Math.min(.50,(p.eventRate||.40)+.05);addLog('🌏',`<strong>${p.name}</strong> 多言語案内作成（3万円）。効果は限定的でトラブル再発リスクが上昇。`);}else{G.cash-=100000;p.rent=Math.floor(p.rent-.10000/p.units);p.eventRate=Math.max(.10,p.eventRate-.20);addLog('✅',`<strong>${p.name}</strong> 管理会社と月額契約（初回10万円・月1万減収）。トラブル発生率が大幅低下。`);}}},
+  {cat:'pack',icon:'🌸',title:'観光ハイシーズン到来',desc:p=>`観光シーズン到来！<strong>${p.name}</strong>への問い合わせが急増しています。`,types:['STAY'],type:'choice',opts:['宿泊料金を値上げ（+20%・稼働率-5%・単価重視）','現状維持で満室優先（ボーナス収入+20%・稼働率重視）'],effect:(p,c)=>{if(c===0){p.rent=Math.floor(p.rent*1.20);p.occ=Math.max(.6,p.occ-.05);addLog('🌸',`<strong>${p.name}</strong> 料金+20%・稼働率わずかに低下。単価重視の判断。`);}else{const bonus=Math.floor(p.rent*p.units*0.20);G.cash+=bonus;addLog('🌸',`<strong>${p.name}</strong> 満室優先。ボーナス収入${fmt(bonus)}。`);}}},
+  {cat:'pack',icon:'📅',title:'急なキャンセル連発',desc:p=>`大型連休直前に<strong>${p.name}</strong>の予約が相次いでキャンセルされました。今月の収入が消えそうです。直前割引で即埋めますか？それとも定価で次の予約を待ちますか？`,types:['STAY'],type:'choice',opts:['直前割引-20%で即埋める（確実に収入確保・今月のみ）','定価で次の予約を待つ（うまくいけばフル収入・空振りリスクあり）'],effect:(p,c)=>{if(c===0){const income=Math.floor(p.rent*p.units*0.80*0.95);G.cash+=income;addLog('📅',`<strong>${p.name}</strong> 直前割引で満室確保。今月収入${fmt(income)}（通常比-20%）。来月から通常料金に戻る。`);}else{if(Math.random()<0.45){const income=Math.floor(p.rent*p.units*0.95);G.cash+=income;addLog('🎯',`<strong>${p.name}</strong> 定価待ちが成功！フル収入${fmt(income)}を確保。`);}else{addLog('😓',`<strong>${p.name}</strong> 定価で待ったが予約が入らず。今月の収入はゼロ。`);}}}},
+  {cat:'pack',icon:'🎉',title:'無断パーティ開催',desc:p=>`<strong>${p.name}</strong>のゲストが深夜に大騒ぎ。近隣から苦情が相次いでいます。`,types:['STAY'],type:'choice',opts:['即退去・クリーニング（8万円・評判維持）','警告のみ（無料・稼働率-15%リスク）'],effect:(p,c)=>{if(c===0){G.cash-=80000;addLog('🎉',`<strong>${p.name}</strong> 強制退去＋清掃（8万円）。評判維持。`);}else{p.occ=Math.max(.3,p.occ-.15);addLog('😓',`<strong>${p.name}</strong> 警告のみ。口コミ評価低下で稼働率-15%。`);}}},
+  // ── 駐車場専用 ──
+  {cat:'pack',icon:'🚗',title:'不法駐車の占拠',desc:p=>`<strong>${p.name}</strong>に無断駐車が続いており、正規利用者から苦情が届きました。`,types:['PARK'],type:'choice',opts:['レッカー業者に依頼（5万円・一時解決・再発あり）','ロック設置（10万円・稼働率+5%・恒久解決）'],effect:(p,c)=>{if(c===0){G.cash-=50000;addLog('🚗',`<strong>${p.name}</strong> レッカー対応（5万円）。一時解決だが再発リスクあり。`);}else{G.cash-=100000;p.occ=Math.min(1,p.occ+.05);addLog('🔒',`<strong>${p.name}</strong> ロック設置（10万円）。稼働率+5%・恒久解決。`);}}},
+  {cat:'pack',icon:'🏗️',title:'近隣マンション建設',desc:p=>`<strong>${p.name}</strong>近くで大型マンションの建設が始まりました。駐車需要が急増しています。`,types:['PARK'],type:'choice',opts:['月額料金を値上げ（+15%・稼働率+8%）','現状維持で稼働率優先（稼働率+15%・単価そのまま）'],effect:(p,c)=>{if(c===0){p.rent=Math.floor(p.rent*1.15);p.occ=Math.min(1,p.occ+.08);addLog('🏗️',`<strong>${p.name}</strong> 需要増で料金+15%・稼働率+8%。`);}else{p.occ=Math.min(1,p.occ+.15);addLog('🏗️',`<strong>${p.name}</strong> 現状維持。稼働率+15%。`);}}},
+  {cat:'pack',icon:'🛣️',title:'アスファルト劣化',desc:p=>`<strong>${p.name}</strong>の路面が劣化し、利用者から補修を求める声が上がっています。`,types:['PARK'],type:'choice',opts:['部分補修（8万円・再劣化リスクあり）','全面舗装（25万円・稼働率+5%・長期安定）'],effect:(p,c)=>{const cost=c===0?80000:250000;const fr=Math.min(G.reserve,cost);G.reserve-=fr;G.cash-=cost-fr;if(c===0){p.eventRate=Math.min(.20,(p.eventRate||.08)+.04);addLog('🛣️',`<strong>${p.name}</strong> 部分補修（${fmt(cost)}）。積立金${fmt(fr)}使用。再劣化リスクあり。`);}else{p.occ=Math.min(1,p.occ+.05);addLog('🛣️',`<strong>${p.name}</strong> 全面舗装（${fmt(cost)}）。積立金${fmt(fr)}使用。稼働率+5%・長期安定。`);}}},
+  {cat:'pack',icon:'💼',title:'デベロッパーから売却打診',desc:p=>`不動産デベロッパーから<strong>${p.name}</strong>の土地を購入したいという打診が届きました。<br><br>売却見込み額：<strong>${fmt(Math.floor(p.price*1.30))}</strong>（評価額の130%）<br><br>売却してキャッシュ化しますか？それとも毎月の安定収入を守りますか？`,types:['PARK'],type:'choice',opts:['今すぐ売却する（評価額130%・キャッシュ化）','断る（毎月の安定収入を守る）'],effect:(p,c)=>{if(c===0){const sp=Math.floor(p.price*1.30);G.cash+=sp;if(p.loan&&p.loan.rem>0){G.cash-=p.loan.rem;G.debt=Math.max(0,G.debt-p.loan.rem);}if(!G.soldDefIds)G.soldDefIds=[];if(p.defId&&!G.soldDefIds.includes(p.defId))G.soldDefIds.push(p.defId);if(PROPOSAL_POOL.some(x=>x.id===p.defId)){if(!G.soldProposals)G.soldProposals=[];if(!G.soldProposals.includes(p.defId))G.soldProposals.push(p.defId);}G.props=G.props.filter(x=>x.id!==p.id);addLog('💼',`<strong>${p.name}</strong> デベロッパーへ売却（${fmt(sp)}）。評価額の130%でキャッシュ化。`,'prop');render();}else{addLog('🤝',`<strong>${p.name}</strong> 売却打診を断った。安定収入を守る。`);}}},
+];
+const CAT_CLS={ten:'ten',bld:'bld',ext:'ext',pack:'bld'};
+const CAT_LBL={ten:'入居者',bld:'建物',ext:'環境',pack:'業態'};
+let _logFilter='all';
+function toggleActions(pid){const body=document.getElementById('pact-'+pid);const btn=document.getElementById('pact-btn-'+pid);if(!body)return;const open=body.classList.toggle('open');btn.textContent=open?'アクション ▲':'アクション ▼';}
+function setLogFilter(cat){_logFilter=cat;document.querySelectorAll('.log-filter').forEach(b=>b.classList.toggle('on',b.dataset.cat===cat));renderLog();}
+function renderLog(){const filtered=_logFilter==='all'?G.logs:G.logs.filter(l=>l.cat===_logFilter);document.getElementById('log-list').innerHTML=filtered.length?filtered.map(l=>`<div class="logitem"><span class="licon">${l.icon}</span><span class="ltxt"><span class="ldate">${l.d}</span>${l.html}</span></div>`).join(''):'<div class="empty">該当するログがありません</div>';}
+const addLog=(icon,html,cat='event')=>{G.logs.unshift({icon,html,d:G.year+'年'+G.month+'月',cat});if(G.logs.length>80)G.logs.pop();};
+// ── 田中さん（NPC）セリフ ──
+const TANAKA_HTML=line=>`<div class="tanaka-wrap"><div class="tanaka-icon">田</div><div class="tanaka-bubble"><div class="tanaka-name">田中（担当）</div><div class="tanaka-text">${line}</div></div></div>`;
+const tanakaActive=()=>G.props.length===0||G.props.some(p=>p.mgmt!=='self');
+const addTanaka=(line)=>{if(!tanakaActive())return;G.logs.unshift({icon:'👔',html:TANAKA_HTML(line),d:G.year+'年'+G.month+'月',cat:'event',isTanaka:true});if(G.logs.length>80)G.logs.pop();};
+let tt;
+const toast=m=>{const e=document.getElementById('tst');e.textContent=m;e.classList.remove('hid');clearTimeout(tt);tt=setTimeout(()=>e.classList.add('hid'),2800);};
+function modal(title,body,btns){document.getElementById('mt').textContent=title;document.getElementById('mb').innerHTML=body;const w=document.getElementById('mbtns');w.innerHTML='';btns.forEach(b=>{const el=document.createElement('button');el.className='mb '+(b.c||'');el.textContent=b.l;el.onclick=()=>{document.getElementById('ov').classList.add('hid');b.f&&b.f();};w.appendChild(el);});document.getElementById('ov').classList.remove('hid');}
+const netAsset=()=>G.cash+G.reserve+G.props.reduce((s,p)=>s+p.price,0)-G.debt;
+const rank=()=>{const t=netAsset();if(t<0)return'F';if(t<5000000)return'E';if(t<20000000)return'D';if(t<50000000)return'C';if(t<100000000)return'B';if(t<300000000)return'A';return'S';};
+function calcIncome(p){const m=MGMT[p.mgmt]||MGMT.collect;if(p.vacancyMonths>0)return{gross:0,fee:0,net:0};let gross=Math.floor(p.rent*p.units*p.occ);const fee=Math.floor(gross*m.rate);return{gross,fee,net:gross-fee};}
+function calcMonthlyReserve(){return G.props.reduce((s,p)=>s+Math.floor(p.price*(p.reserveRate||.10)/12),0);}
+function calcMonthlyTax(){return G.props.reduce((s,p)=>s+Math.floor(p.price*0.014/12),0);}
+function getMaxCollectMonths(){return G.props.filter(p=>p.mgmt==='collect').reduce((m,p)=>Math.max(m,p.collectMonths||0),0);}
+function isProposalReady(){return getMaxCollectMonths()>=TRUST_MONTHS||G.collectTotal>=TRUST_COUNT;}
+function checkProposal(){if(!isProposalReady())return null;const available=PROPOSAL_POOL.filter(p=>!G.proposals.includes(p.id)&&!(G.soldProposals||[]).includes(p.id));if(!available.length)return null;if(Math.random()>0.10)return null;return available[Math.floor(Math.random()*available.length)];}
+function showProposal(prop){
+  G.proposals.push(prop.id);
+  const y=((prop.rent*prop.units*12)/prop.price*100).toFixed(1);
+  const routeMsg=getMaxCollectMonths()>=TRUST_MONTHS?`${TRUST_MONTHS}ヶ月以上の長期管理実績`:`累計${TRUST_COUNT}件の集金管理依頼`;
+  addLog('🏆',`<strong>管理会社から特別物件の情報提供！</strong>　${prop.name}`);
+  modal('🏆 管理会社から特別情報',
+    `<span style="font-size:11px;color:#8b6914">${routeMsg}が認められ、非公開物件の情報をご提供します。</span><br><br>
+    <div style="background:#fffbf0;border:1px solid #c9a84c;border-radius:8px;padding:12px;margin-bottom:8px;">
+      <div style="font-size:15px;font-weight:700;color:#5c4000;margin-bottom:8px;">${prop.icon} ${prop.name}</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;">
+        <div style="text-align:center;background:rgba(255,255,255,.8);border-radius:4px;padding:6px;"><div style="font-size:9px;color:#8b6914">満室月収</div><div style="font-size:16px;font-weight:700;color:#2d6a4f">${fmt(prop.rent*prop.units)}</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.8);border-radius:4px;padding:6px;"><div style="font-size:9px;color:#8b6914">初期入居率</div><div style="font-size:16px;font-weight:700;color:#2d6a4f">${Math.round(prop.occInit*100)}%</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.8);border-radius:4px;padding:6px;"><div style="font-size:9px;color:#8b6914">想定CF</div><div style="font-size:14px;font-weight:700;color:#2d6a4f">${prop.cf_note}</div></div>
+      </div>
+      <div style="font-size:11px;color:#8b6914;line-height:1.5">${prop.desc}</div>
+    </div>
+    この物件は<strong>プレミアムプラン限定</strong>で購入できます。<br>
+    <span style="font-size:12px;color:#b8860b">「物件市場」の特別提案に追加されました。</span>`,
+    [{l:'閉じる'},{l:'物件市場へ',c:'pri',f:()=>sw('market')}]
+  );
+}
+function showPremiumUnlock(){showPremiumPlans();}
+let _selMgmt='collect';
+function renderMgmtGrid(id){const el=document.getElementById(id);if(!el)return;el.innerHTML=Object.values(MGMT).map(m=>`<div class="mgmt-opt${_selMgmt===m.id?' sel-'+m.col:''}" onclick="selMgmt('${m.id}','${id}')"><div class="mopt-name">${m.name}</div><div class="mopt-rate ${m.col}">${Math.round(m.rate*100)}%</div><div class="mopt-tag ${m.col}">${{guarantee:'空室保証あり',collect:'特別提案あり',self:'管理料0円'}[m.id]}</div><div class="mopt-desc">${m.desc}</div></div>`).join('');}
+window.selMgmt=function(id,cid){_selMgmt=id;renderMgmtGrid(cid);};
+function showMgmtSelect(d,price,isLoan,loanData,occInit,fromReserve){_selMgmt='collect';modal('管理方法を選択',`<strong>${d.name}</strong> の管理方法を選んでください。購入後は変更できません。<br><div class="mgmt-grid" id="mgmt-grid-buy"></div>`,[{l:'戻る'},{l:'この方法で購入',c:'pri',f:()=>{const mgmt=_selMgmt;const p=addProp(d,price,mgmt,occInit);if(mgmt==='collect'){G.collectTotal++;}if(isLoan&&loanData){G.cash-=loanData.down;G.debt+=loanData.la;p.loan={rem:loanData.la,mo:loanData.mo,term:loanData.term};addLog('🏦',`<strong>${d.name}</strong> ローン購入（頭金${fmt(loanData.down)}）管理：${MGMT[mgmt].name}`,'prop');}else if(fromReserve&&fromReserve>0){const fromCash=price-fromReserve;G.cash-=fromCash;G.reserve-=fromReserve;G.cashBuyCount=(G.cashBuyCount||0)+1;addLog('🎉',`<strong>${d.name}</strong> 現金購入（現金${fmt(fromCash)}＋積立補充${fmt(fromReserve)}）管理：${MGMT[mgmt].name}`,'prop');}else{G.cash-=price;G.cashBuyCount=(G.cashBuyCount||0)+1;addLog('🎉',`<strong>${d.name}</strong> 現金購入（${fmt(price)}）管理：${MGMT[mgmt].name}`,'prop');}
+// 田中さん：初めての購入
+if(G.props.length===1){setTimeout(()=>addTanaka('最初の物件ですね。築古は手がかかりますが、これがあなたの第一歩です。しっかりサポートします。'),100);}
+// 田中さん：プレミアム物件購入時
+else if(PROPOSAL_POOL.some(x=>x.id===d.id)){setTimeout(()=>addTanaka('この物件、私が自信を持ってお薦めした物件です。間違いありません。'),100);}if(mgmt==='collect'&&G.collectTotal===TRUST_COUNT){setTimeout(()=>toast('🏆 集金管理5件達成！特別提案が届く可能性があります'),500);}render();}}]);setTimeout(()=>renderMgmtGrid('mgmt-grid-buy'),50);}
+function resetGameState(){const ob=document.getElementById('event-return-banner');if(ob)ob.remove();pendingEvents=[];Object.assign(G,{cash:3000000,debt:0,month:1,year:2025,props:[],nid:1,logs:[],reserve:0,negMonths:0,gameOver:false,cleared:false,proposals:[],collectTotal:0,unlockedTitles:[],equippedTitle:null,survivedCrisis:false,crisisCount:0,cashCrisis:false,cashBuyCount:0,skipNextEvent:false,lastRank:'E',firstCFPlus:false,soldDefIds:[],soldProposals:[],bigEvent1Fired:false,bigEvent2Fired:false,bigEvent1Type:null,quakeMonthsLeft:0,crisisMonthsLeft:0,_propHintShown:false});document.getElementById('save-status').textContent='セーブデータなし';addLog('🌅','大家になろうへようこそ。初期資金 <strong>¥300万円</strong>。目標：純資産1億円。');addTanaka('はじめまして。田中不動産の田中と申します。300万円からのスタートですね。難しい道ですが、一緒に進みましょう。');addLog('🏚️','まずは「物件市場」から <strong>築古アパート</strong> を購入しましょう。','prop');render();}
+function resolveArrears(p){G.cash-=150000;const lost=p.arrears*p.rent;p.arrears=0;p.arrearsStep=0;p.occ=Math.max(.2,p.occ-.1);p.vacancyMonths=2;addLog('⚖️',`<strong>${p.name}</strong> 弁護士介入で解決。費用15万円。未収${fmt(lost)}は回収不可。退去→空室募集。`);render();}
+function showArrearsModal(p){const sd=ARREARS_STEPS.find(s=>s.step===p.arrearsStep)||ARREARS_STEPS[ARREARS_STEPS.length-1];const btns=[];sd.opts.forEach(opt=>{if(opt.includes('弁護士')){btns.push({l:opt,c:'dan',f:()=>resolveArrears(p)});}else if(opt.includes('内容証明')){btns.push({l:opt,c:'pri',f:()=>{G.cash-=20000;p.arrearsStep=2;addLog('📋',`<strong>${p.name}</strong> 内容証明送付（2万円）。`);render();}});}else{btns.push({l:opt,f:()=>{addLog('👀',`<strong>${p.name}</strong> 様子を見ることにした。`);render();}});}});modal(sd.icon+' '+sd.label+'（'+p.name+'）',`累計未収：<strong style="color:var(--red)">${fmt(p.arrears*p.rent)}</strong><span style="font-size:10px;color:var(--muted)">（手持ち資金からは引かれません）</span><br><br>${sd.desc}<br><br>どう対応しますか？`,btns);}
+function triggerArrears(p){p.arrears=(p.arrears||0)+1;p.arrearsStep=p.arrearsStep||1;showArrearsModal(p);}
+function continueArrears(p){p.arrears=(p.arrears||0)+1;if(p.arrearsStep<3)p.arrearsStep=Math.min(3,p.arrearsStep+1);showArrearsModal(p);}
+// ── セーブスロット管理 ──
+function showSaveSlots(){
+  const rows=SAVE_SLOTS.map((key,i)=>{
+    let info='空スロット',date='';
+    try{const d=JSON.parse(localStorage.getItem(key)||'null');if(d){info=`${d.year}年${d.month}月 純資産${fmt(d.cash+d.reserve+(d.props||[]).reduce((s,p)=>s+p.price,0)-d.debt)}`;date=new Date(d.savedAt).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});}}catch(e){}
+    const locked=i>0&&!isPremPack();
+    return `<div class="slot-row">
+      <span class="slot-num">S${i+1}</span>
+      <div class="slot-info">${locked?'<span style="color:var(--muted)">🔒 プレミアム限定</span>':`<div style="font-weight:700;font-size:12px">${info}</div>${date?`<div class="slot-date">${date}</div>`:''}`}</div>
+      ${locked
+        ?`<button class="slot-btn gold" onclick="closeModal();showPremiumPlans()">解放</button>`
+        :`<button class="slot-btn pri" onclick="closeModal();doSaveToSlot(${i})">保存</button>
+          <button class="slot-btn" onclick="closeModal();doLoadFromSlot(${i})">読込</button>`}
+    </div>`;
+  }).join('');
+  modal('💾 セーブスロット',`<div class="slot-grid">${rows}</div><div style="font-size:10px;color:var(--muted);margin-top:4px">無料：スロット1のみ。プレミアムで3スロット使用可。</div>`,[{l:'閉じる'}]);
+}
+function doSaveToSlot(i){
+  try{localStorage.setItem(SAVE_SLOTS[i],JSON.stringify({...G,savedAt:new Date().toISOString()}));
+  const now=new Date();document.getElementById('save-status').textContent='S'+(i+1)+' セーブ：'+(now.getMonth()+1)+'/'+now.getDate()+' '+now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+  toast('💾 スロット'+(i+1)+'にセーブしました');}catch(e){toast('セーブ失敗');}}
+function doLoadFromSlot(i){
+  try{const raw=localStorage.getItem(SAVE_SLOTS[i]);if(!raw){toast('スロット'+(i+1)+'にデータなし');return;}
+  const data=JSON.parse(raw);
+  modal('📂 ロード確認',`スロット${i+1}のデータを読み込みます。現在のデータは失われます。`,[{l:'キャンセル'},{l:'ロードする',c:'pri',f:()=>{Object.assign(G,data);toast('📂 ロードしました');render();}}]);}catch(e){toast('ロード失敗');}}
+function closeModal(){document.getElementById('ov').classList.add('hid');}
+function doSaveGame(){doSaveToSlot(0);}
+function doLoadGame(){doLoadFromSlot(0);}
+function doResetGame(){modal('🔄 リセット確認','すべてのデータを削除して最初からやり直します。',[{l:'キャンセル'},{l:'リセットする',c:'dan',f:()=>{SAVE_SLOTS.forEach(k=>{try{localStorage.removeItem(k);}catch(e){}});resetGameState();toast('🔄 リセットしました');}}]);}
+function checkExistingSave(){try{const raw=localStorage.getItem(SAVE_SLOTS[0]);if(raw){const data=JSON.parse(raw);const d=new Date(data.savedAt);const label=(d.getMonth()+1)+'/'+d.getDate()+' '+d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');document.getElementById('save-status').textContent='S1 セーブ：'+label;modal('📂 セーブデータあり',`${data.year}年${data.month}月のデータが見つかりました（${label}保存）。続きから始めますか？`,[{l:'最初から始める',f:()=>{resetGameState();showTutorial();}},{l:'続きから始める',c:'pri',f:()=>{Object.assign(G,data);render();}}]);}}catch(e){}}
+
+// ── プレミアムプランUI ──
+function showPremiumPlans(){
+  const packActive=isPremPack();
+  modal('👑 プレミアムプラン',`
+<div style="font-size:12px;color:var(--muted);margin-bottom:12px">無料でも楽しめますが、課金すると<strong style="color:var(--text)">経営判断の幅が大きく広がります。</strong></div>
+<div class="plan-card featured" style="margin-bottom:12px" onclick="closeModal();buyPremium()">
+  <div class="plan-badge">買い切り</div>
+  <div class="plan-icon">👑</div>
+  <div class="plan-name">プレミアム</div>
+  <div class="plan-price">¥980</div>
+  <div class="plan-desc" style="text-align:left">
+    <strong>管理会社提案物件を現金購入できる</strong><br>
+    ・信頼条件達成後に田中さんが非公開物件を紹介<br>
+    ・駅近好立地/リノベ/大学周辺/商業地隣接の4物件<br>
+    ・現金購入のみ（ローン不可）の高品質物件<br><br>
+    <strong>業態系物件も解放</strong><br>
+    ・🏪 商店街テナントビル・🏨 民泊マンション・🅿️ 駐車場<br><br>
+    <strong>称号1つ選択</strong><br>
+    ・物件王・不動産王・無借金大家
+  </div>
+  ${packActive?'<div style="font-size:10px;color:var(--green);font-weight:700;margin-top:8px">✅ 購入済み</div>':''}
+</div>
+<div style="font-size:10px;color:var(--muted);text-align:center">課金はゲームの進行に有利になりますが、無料でも楽しめます。</div>
+`,[{l:'閉じる'}]);}
+
+// ── 課金シミュレーション（デモ：実際の決済は未実装） ──
+function buyPremSpeed(){modal('⚡ スピードプラン',`月額<strong>¥480</strong>で「3ヶ月まとめ進める」と「イベントスキップ」が使えるようになります。<br><br><span style="color:#b8860b;font-size:12px">※ デモ版：決済機能は実装準備中。テスト用に有効化します。</span>`,[{l:'キャンセル'},{l:'テスト有効化',c:'pri',f:()=>{PREM.speed=true;savePrem(PREM);updateBottomBar();toast('⚡ スピードプラン有効化（テスト）');}}]);}
+function buyPremium(){modal('👑 プレミアム',`買い切り<strong>¥980</strong>で以下が解放されます。<br><br><span style="font-size:11px;color:var(--text)">✅ 管理会社提案物件を<strong>現金購入</strong>できる<br>（信頼条件達成後に田中さんが紹介）<br><br>✅ 業態系物件が解放<br>🏪 商店街テナントビル・🏨 民泊マンション・🅿️ 駐車場</span><br><br><span style="color:#b8860b;font-size:12px">※ デモ版：テスト用に有効化します。</span>`,[{l:'キャンセル'},{l:'テスト解放',c:'pri',f:()=>{PREM.pack=true;PREM.premium=true;savePrem(PREM);render();toast('👑 プレミアム解放（テスト）');showTitleShop();}}]);}
+function buyPremPack(){buyPremium();}
+
+
+// ── 称号ショップ ──
+function showTitleShop(){
+  const paid=TITLE_DEFS.filter(t=>!t.free);
+  const rows=paid.map(t=>{
+    const owned=isPremTitle(t.id)||G.unlockedTitles.includes(t.id);
+    const achieved=t.check();
+    return`<div class="title-card ${owned?'unlocked':achieved?'':'locked'}">
+      <div class="title-icon">${t.icon}</div>
+      <div class="title-name">${t.name}</div>
+      <div class="title-cond" style="font-size:9px">${t.cond}</div>
+      ${owned
+        ?`<div class="title-owned">✅ 刻印済み</div>`
+        :achieved
+          ?`<div style="font-size:9px;color:var(--green);font-weight:700;margin-top:4px">✅ 条件達成</div>`
+          :`<div style="font-size:9px;color:var(--muted);margin-top:4px">🔒 条件未達成</div>`}
+    </div>`;}).join('');
+  modal('🏅 称号ショップ',`
+<div class="title-grid" style="grid-template-columns:repeat(2,1fr);gap:8px;margin-top:4px">${rows}</div>
+<div style="font-size:10px;color:var(--muted);margin-top:8px">条件を達成すると刻印ボタンが解放されます。</div>`,[{l:'閉じる'}]);}
+function buyTitle(id){const t=TITLE_DEFS.find(x=>x.id===id);if(!t)return;if(!t.check()){toast('条件をまだ達成していません');return;}modal('🏅 '+t.name,`称号「<strong>${t.icon} ${t.name}</strong>」を¥300で永久記録として刻印します。<br><br><span style="font-size:11px;color:var(--text)">条件：${t.cond}</span><br><br><span style="color:#b8860b;font-size:12px">※ デモ版：テスト用に有効化します。</span>`,[{l:'キャンセル'},{l:'¥300で刻印する',c:'pri',f:()=>{if(!PREM.titles)PREM.titles=[];if(!PREM.titles.includes(id))PREM.titles.push(id);savePrem(PREM);renderTitlePanel();toast(`${t.icon} 称号「${t.name}」を刻印しました`);}}]);}
+
+// ── 3ヶ月まとめ進め ──
+function tryAdvance3(){
+  if(!isPremSpeed()){showPremiumPlans();return;}
+  if(G.gameOver||G.cleared)return;
+  modal('⚡ 3ヶ月まとめ進める','3ヶ月分の収支をまとめて処理します。イベントは自動処理されます。',[{l:'キャンセル'},{l:'進める',c:'pri',f:()=>{for(let i=0;i<3;i++){if(G.gameOver||G.cleared)break;nextMonthAuto();}render();}}]);}
+function trySkipEvent(){
+  if(!isPremSpeed()){showPremiumPlans();return;}
+  toast('🎯 次回イベントをスキップします（次の月次処理時に有効）');G.skipNextEvent=true;}
+
+// ── 称号チェック・パネル描画 ──
+function checkTitles(){
+  TITLE_DEFS.forEach(t=>{
+    if(G.unlockedTitles.includes(t.id))return;
+    if(t.free&&t.check()){
+      G.unlockedTitles.push(t.id);
+      setTimeout(()=>toast(`🏅 称号解放：「${t.name}」`),400);
+    }
+  });}
+function renderTitlePanel(){
+  const equipped=G.equippedTitle?TITLE_DEFS.find(t=>t.id===G.equippedTitle):null;
+  const equippedHtml=equipped?`<div style="background:var(--accent);border:1.5px solid var(--gold);border-radius:8px;padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;gap:10px"><span style="font-size:24px">${equipped.icon}</span><div><div style="font-size:12px;font-weight:700">${equipped.name}</div><div style="font-size:10px;color:var(--muted)">現在装備中</div></div></div>`:'<div style="font-size:12px;color:var(--muted);margin-bottom:12px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:8px">称号未装備</div>';
+  const cards=TITLE_DEFS.map(t=>{
+    const unlocked=G.unlockedTitles.includes(t.id)||isPremTitle(t.id);
+    const achieved=t.check();
+    const canStamp=!t.free&&!unlocked&&achieved;
+    const notAchieved=!t.free&&!unlocked&&!achieved;
+    return`<div class="title-card ${unlocked?'unlocked':notAchieved?'locked':''}" style="cursor:${unlocked?'pointer':'default'}" onclick="${unlocked?`equipTitle('${t.id}')`:''}" >
+      <div class="title-icon">${t.icon}</div>
+      <div class="title-name">${t.name}</div>
+      <div class="title-cond" style="font-size:9px">${t.cond}</div>
+      ${unlocked
+        ?`<div class="title-owned">${G.equippedTitle===t.id?'✅ 装備中':'タップで装備'}</div>`
+        :canStamp
+          ?`<div style="font-size:9px;color:var(--green);font-weight:700;margin-top:3px">✅ 条件達成</div>`
+          :notAchieved
+            ?`<div style="font-size:9px;color:var(--muted);margin-top:3px">🔒 条件未達成</div>`
+            :''}
+    </div>`}).join('');
+  document.getElementById('title-content').innerHTML=`
+    <div style="margin-bottom:8px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">現在の称号</div>${equippedHtml}</div>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.08em">取得可能な称号</div>
+    <div class="title-grid">${cards}</div>`;}
+function equipTitle(id){G.equippedTitle=id;renderTitlePanel();const t=TITLE_DEFS.find(x=>x.id===id);toast(`${t.icon} 称号「${t.name}」を装備しました`);}
+
+// ── ボトムバー状態更新 ──
+function updateBottomBar(){}
+function sw(id){document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('on',['log','tax','owned','market','title'][i]===id);});document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.getElementById('panel-'+id).classList.add('on');if(id==='title')renderTitlePanel();else render();}
+function addProp(d,price,mgmt,occInit){const p={id:G.nid++,defId:d.id,icon:d.icon,name:d.name,type:d.type,units:d.units,rent:d.rent,reserveRate:d.reserveRate||.10,appr:d.appr||0,price,buyPrice:price,occ:occInit||(.5+Math.random()*.2),age:0,loan:null,reno:false,arrears:0,arrearsStep:0,noiseResolved:false,leakResolved:false,mgmt:mgmt||'collect',vacancyMonths:occInit?0:(d.vacancyMonths||2),collectMonths:0,gradeEquip:false,gradeFull:false,eventRate:d.eventRate||.28,heldMonths:0,loanRate:d.rate||.028,totalRentIncome:0,totalSpent:0};G.props.push(p);return p;}
+function buyDirect(id,isProp){const d=[...DEFS,...PACK_DEFS,...PROPOSAL_POOL].find(x=>x.id===id);const alreadyOwned=G.props.some(p=>p.defId===id)||(G.soldDefIds||[]).includes(id);if(alreadyOwned){toast('この物件はすでに購入済みです（1物件1回まで）');return;}const isProposal=PROPOSAL_POOL.some(x=>x.id===id);if(isProposal){if(!isPremPack()){showPremiumUnlock();return;}const totalAvail=G.cash+G.reserve;if(totalAvail<d.price){toast('資金が足りません（現金＋積立金でも不足）');return;}const fromReserve=Math.max(0,d.price-G.cash);const mr=Math.floor(d.price*(d.reserveRate||.10)/12);const reserveNote=fromReserve>0?`<br>⚠️ 現金不足のため積立金 <strong style="color:var(--gold)">${fmt(fromReserve)}</strong> を補充使用`:'';modal(d.icon+' '+d.name,`購入価格：<strong>${fmt(d.price)}</strong><br>部屋数：${d.units}室　月額：${fmt(d.rent)}/室<br>修繕積立：${fmt(mr)}/月<br><br>⚠️ <strong style="color:var(--red)">現金購入のみ（ローン不可）</strong>${reserveNote}<br><br>※購入後${d.vacancyMonths||2}ヶ月は入居募集期間です。<br><br>${d.desc}`,[{l:'キャンセル'},{l:'次へ→管理方法',c:'pri',f:()=>showMgmtSelect(d,d.price,false,null,null,fromReserve)}]);return;}if(isProp){showPremiumUnlock();return;}if(G.cash<d.price){toast('資金が足りません');return;}const mr=Math.floor(d.price*(d.reserveRate||.10)/12);modal(d.icon+' '+d.name,`購入価格：<strong>${fmt(d.price)}</strong><br>部屋数：${d.units}室　月額：${fmt(d.rent)}/室<br>修繕積立：${fmt(mr)}/月<br><br>※購入後${d.vacancyMonths||2}ヶ月は入居募集期間です。<br><br>${d.desc}`,[{l:'キャンセル'},{l:'次へ→管理方法',c:'pri',f:()=>showMgmtSelect(d,d.price,false,null)}]);}
+// ── ローン上限チェック（家賃年収×15倍） ──
+function calcLoanLimit(){
+  const annualRent=G.props.reduce((s,p)=>{
+    if(p.vacancyMonths>0||p.arrears>0)return s;
+    return s+calcIncome(p).net*12;
+  },0);
+  // 最低保証：初期資金300万の場合でも1棟目が買えるよう500万保証
+  return Math.max(5000000, Math.floor(annualRent*8));
+}
+function calcLoanRemaining(){return Math.max(0,calcLoanLimit()-G.debt);}
+
+function buyLoan(id,isProp){const d=[...DEFS,...PACK_DEFS,...PROPOSAL_POOL].find(x=>x.id===id);const alreadyOwned=G.props.some(p=>p.defId===id)||(G.soldDefIds||[]).includes(id);if(alreadyOwned){toast('この物件はすでに購入済みです（1物件1回まで）');return;}const isProposal=PROPOSAL_POOL.some(x=>x.id===id);if(isProposal){toast('管理会社提案物件は現金購入のみです');return;}if(isProp){showPremiumUnlock();return;}const down=Math.floor(d.price*(1-d.lr));const la=d.price-down;const rate=d.rate||.028;const term=240;const mo=Math.floor(la*rate/12/(1-Math.pow(1+rate/12,-term)));if(G.cash<down){toast('頭金不足（'+fmt(down)+'必要）');return;}
+// ローン上限チェック
+const remaining=calcLoanRemaining();
+if(la>remaining){
+  const limit=calcLoanLimit();
+  const annualRent=G.props.reduce((s,p)=>{if(p.vacancyMonths>0||p.arrears>0)return s;return s+calcIncome(p).net*12;},0);
+  modal('🏦 融資審査：否決',`<strong>融資限度額を超えています。</strong><br><br>借入希望額：<span style="color:var(--red);font-weight:700">${fmt(la)}</span><br>融資可能残枠：<span style="color:var(--red);font-weight:700">${fmt(remaining)}</span><br>融資上限：${fmt(limit)}（年間家賃収入${fmt(annualRent)}の8倍）<br><br><span style="font-size:11px;color:var(--muted)">既存ローンを繰上返済するか、現金購入を検討してください。物件を増やして家賃収入を上げると融資枠が広がります。</span>`,[{l:'閉じる'}]);
+  return;
+}
+modal('🏦 ローン購入',`物件：<strong>${d.name}</strong><br>頭金（${Math.round((1-d.lr)*100)}%）：<strong>${fmt(down)}</strong><br>借入額：${fmt(la)}<br>月返済：<strong style="color:var(--red)">${fmt(mo)}</strong><br>金利：${(rate*100).toFixed(1)}%　返済期間：20年<br><br>※購入後${d.vacancyMonths||2}ヶ月は入居募集期間です。`,[{l:'キャンセル'},{l:'次へ→管理方法',c:'pri',f:()=>showMgmtSelect(d,d.price,true,{down,la,mo,term})}]);}
+function doReno(pid){const p=G.props.find(x=>x.id===pid);if(p.occ>=0.9){toast('入居率が90%以上のため空室対策は不要です');return;}const months=['FML','MID','STAY','SHOP'].includes(p.type)?4:2;const cost=Math.floor(p.rent*p.units*months);if(G.cash<cost){toast('資金が足りません');return;}modal('🏠 空室対策（改修）',`<strong>${p.name}</strong><br>費用：<strong>${fmt(cost)}</strong>（家賃×室数×${months}ヶ月分）<br><br>効果：<span style="color:var(--green)">入居率+20%・評価額+5%</span><br><span style="font-size:11px;color:var(--muted)">空室が多いときに有効。入居率を一気に引き上げます。</span>`,[{l:'キャンセル'},{l:'実施する',c:'pri',f:()=>{G.cash-=cost;p.occ=Math.min(1,p.occ+.2);p.price=Math.floor(p.price*1.05);p.reno=true;p.totalSpent=(p.totalSpent||0)+cost;addLog('🔨',`<strong>${p.name}</strong> 改修完了（${fmt(cost)}）`,'prop');render();}}]);}
+function doGradeUp(pid){
+  const p=G.props.find(x=>x.id===pid);
+  const plans=[
+    {label:'🔧 設備交換',cost:500000,desc:'エアコン・給湯器・浴室設備を最新に。',rentUp:0.05,priceUp:0,note:'家賃+5%',flag:'gradeEquip'},
+    {label:'🏠 フルリノベ',cost:3000000,desc:'内装・設備・外装の全面刷新。築古物件でも新築並みの訴求力に。',rentUp:0.15,priceUp:0.05,note:'家賃+15%・評価額+5%',flag:'gradeFull'},
+  ];
+  const rows=plans.map((pl,i)=>{
+    const done=p[pl.flag];
+    const fr=Math.min(G.reserve,pl.cost);const gap=pl.cost-fr;
+    const canDo=!done&&G.cash>=gap;
+    return`<div style="border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:8px;background:${done?'#f5f5f5':canDo?'#fff':'#fafafa'};opacity:${done?0.5:canDo?1:0.6}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:13px;font-weight:700">${pl.label}${done?' ✅ 実施済み':''}</span>
+        <span style="font-size:12px;font-weight:700;color:var(--green)">${pl.note}</span>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px">${pl.desc}</div>
+      ${done?'':'<div style="font-size:11px;margin-bottom:7px">費用 <strong>'+fmt(pl.cost)+'</strong>　積立金充当 <strong style="color:var(--green)">'+fmt(fr)+'</strong>　現金負担 <strong style="color:'+(gap>0?'var(--red)':'var(--green)')+'">'+fmt(gap)+'</strong></div>'}
+      ${done?'<div style="font-size:11px;color:var(--muted)">このプランは適用済みです。</div>':`<button class="mb pri" style="width:100%;${canDo?'':'opacity:.4;pointer-events:none'}" onclick="document.getElementById('ov').classList.add('hid');execGradeUp(${p.id},${i})">${canDo?'実施する':'現金不足'}</button>`}
+    </div>`;
+  }).join('');
+  modal('✨ グレードアップ',`<strong>${p.name}</strong> のグレードアップ計画を選んでください。<br><span style="font-size:11px;color:var(--muted)">家賃を引き上げて収益を改善します。空室対策とは異なります。</span><br><span style="font-size:11px;color:var(--muted)">積立金プール：${fmt(G.reserve)}　手持ち資金：${fmt(G.cash)}</span><br><br>`+rows,[{l:'キャンセル'}]);
+}
+window.execGradeUp=function(pid,planIdx){
+  const p=G.props.find(x=>x.id===pid);
+  const plans=[
+    {cost:500000,rentUp:0.05,priceUp:0,label:'設備交換',flag:'gradeEquip'},
+    {cost:3000000,rentUp:0.15,priceUp:0.05,label:'フルリノベ',flag:'gradeFull'},
+  ];
+  const pl=plans[planIdx];
+  if(p[pl.flag]){toast('このプランは既に実施済みです');render();return;}
+  const fr=Math.min(G.reserve,pl.cost);const gap=pl.cost-fr;
+  if(G.cash<gap){toast('現金が足りません');render();return;}
+  G.reserve-=fr;G.cash-=gap;
+  p.rent=Math.floor(p.rent*(1+pl.rentUp));
+  if(pl.priceUp>0)p.price=Math.floor(p.price*(1+pl.priceUp));
+  p[pl.flag]=true;p.reno=true;
+  p.totalSpent=(p.totalSpent||0)+pl.cost;
+  addLog('✨',`<strong>${p.name}</strong> ${pl.label}完了（${fmt(pl.cost)}）。積立金${fmt(fr)}使用。`,'prop');
+  render();
+};
+function doChangeMgmt(pid){
+  const p=G.props.find(x=>x.id===pid);
+  const cur=MGMT[p.mgmt];
+  // 純資産に応じた段階手数料（序盤の負担を軽減）
+  const na=netAsset();
+  const fee=na<10000000?300000:na<50000000?500000:1000000;
+  const feeLabel=na<10000000?'30万円（序盤特別料金）':na<50000000?'50万円':'100万円';
+  const opts=Object.values(MGMT).filter(m=>m.id!==p.mgmt);
+  // 現在の状況テキスト
+  let curStatus='';
+  if(p.mgmt==='collect'){
+    const pct=Math.min(100,Math.round((p.collectMonths||0)/TRUST_MONTHS*100));
+    curStatus=`<div style="font-size:11px;color:var(--muted);margin-top:2px">継続 ${p.collectMonths||0}ヶ月　信頼度 ${pct}%　<span style="color:var(--red)">※変更するとリセット</span></div>`;
+  } else {
+    curStatus=`<div style="font-size:11px;color:var(--muted);margin-top:2px">継続 ${p.collectMonths||0}ヶ月</div>`;
+  }
+  const rows=opts.map(m=>{
+    const canDo=G.cash>=fee;
+    return`<div style="border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:8px;background:#fff">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:13px;font-weight:700">${m.name}</span>
+        <span style="font-size:11px;color:var(--muted)">手数料 ${fmt(fee)}</span>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px">${m.desc}</div>
+      <button class="mb pri" style="width:100%;${canDo?'':'opacity:.4;pointer-events:none'}" onclick="document.getElementById('ov').classList.add('hid');execChangeMgmt(${p.id},'${m.id}')">${canDo?'この方法に変更する':'現金不足'}</button>
+    </div>`;
+  }).join('');
+  modal('🔄 管理方法の変更',`<strong>${p.name}</strong><br>現在：<strong>${cur.name}</strong>　${Math.round(cur.rate*100)}%${curStatus}<br><br>⚠️ 変更手数料：<strong style="color:var(--red)">${feeLabel}</strong>（現金のみ）<br><br>`+rows,[{l:'キャンセル'}]);
+}
+window.execChangeMgmt=function(pid,newMgmt){
+  const p=G.props.find(x=>x.id===pid);
+  const na=netAsset();
+  const fee=na<10000000?300000:na<50000000?500000:1000000;
+  if(G.cash<fee){toast('現金が足りません');render();return;}
+  const old=MGMT[p.mgmt].name;
+  G.cash-=fee;
+  p.mgmt=newMgmt;
+  p.collectMonths=0;
+    // collectTotalは「累計で集金管理を依頼した回数」。変更後collectになった場合もカウント
+  if(newMgmt==='collect') G.collectTotal++;
+  addLog('🔄',`<strong>${p.name}</strong> 管理変更：${old} → ${MGMT[newMgmt].name}（手数料${fmt(fee)}）`,'prop');
+  render();
+};
+function doSell(pid){
+  const p=G.props.find(x=>x.id===pid);
+  const sp=Math.floor(p.price*(1.00+Math.random()*.04));
+  const fee=Math.floor(sp*.05);
+  const rd=p.loan?p.loan.rem:0;
+  const heldMonths=p.heldMonths||0;
+  const isShort=heldMonths<36;
+  const acquisition=p.buyPrice||p.price;
+  const gain=Math.max(0,(sp-fee-rd)-acquisition);
+  const tax=isShort?Math.floor(gain*.20):0;
+  const net=sp-fee-rd-tax;
+  const shortNote=isShort?`<br><span style="color:var(--red);font-size:11px">⚠️ 短期売却（保有${heldMonths}ヶ月）：売却益に20%課税 ${fmt(tax)}</span>`:`<br><span style="color:var(--green);font-size:11px">✅ 長期保有（保有${heldMonths}ヶ月）：課税なし</span>`;
+
+  // 投資収支サマリー計算
+  const totalRent=p.totalRentIncome||0;
+  const totalSpent=p.totalSpent||0;
+  const totalCost=acquisition;
+  const sellPnl=net-totalCost;
+  const totalPnl=totalRent-totalSpent+net-totalCost;
+  const pnlColor=totalPnl>=0?'var(--green)':'var(--red)';
+  const sellPnlColor=sellPnl>=0?'var(--green)':'var(--red)';
+
+  const summaryHtml=`
+<div style="margin-top:10px;background:#f8f8f4;border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:11px">
+  <div style="font-weight:700;color:var(--muted);margin-bottom:7px;font-size:10px;letter-spacing:.05em">📊 投資収支サマリー</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px">
+    <div style="color:var(--muted)">取得原価</div><div style="font-weight:700;text-align:right">${fmt(totalCost)}</div>
+    <div style="color:var(--muted)">累計家賃収入</div><div style="font-weight:700;text-align:right;color:var(--green)">${fmt(totalRent)}</div>
+    <div style="color:var(--muted)">修繕・改修費累計</div><div style="font-weight:700;text-align:right;color:var(--red)">${totalSpent>0?'-':''}${fmt(totalSpent)}</div>
+    <div style="color:var(--muted)">売却手取り</div><div style="font-weight:700;text-align:right">${fmt(net)}</div>
+    <div style="color:var(--muted)">売却損益</div><div style="font-weight:700;text-align:right;color:${sellPnlColor}">${sellPnl>=0?'+':''}${fmt(sellPnl)}</div>
+    <div style="border-top:1px solid var(--border);padding-top:5px;margin-top:2px;font-weight:700">総合収支</div>
+    <div style="border-top:1px solid var(--border);padding-top:5px;margin-top:2px;font-weight:700;text-align:right;color:${pnlColor};font-size:13px">${totalPnl>=0?'+':''}${fmt(totalPnl)}</div>
+  </div>
+</div>`;
+
+  modal('💴 売却',`<strong>${p.name}</strong>${p.arrears>0?'<br><span style="color:var(--red);font-size:12px">⚠️ 滞納中</span>':''}
+    <br>査定額：<strong>${fmt(sp)}</strong>
+    <br>仲介手数料等（5%）：<span style="color:var(--red)">${fmt(fee)}</span>
+    ${rd>0?`<br>ローン残：<span style="color:var(--red)">${fmt(rd)}</span>`:''}
+    ${shortNote}
+    <br>手取り：<strong>${fmt(net)}</strong>${summaryHtml}`,
+  [{l:'やめる'},{l:'売却する',c:'dan',f:()=>{
+    G.cash+=net;
+    if(p.loan)G.debt-=p.loan.rem;
+    if(!G.soldDefIds)G.soldDefIds=[];if(p.defId&&!G.soldDefIds.includes(p.defId))G.soldDefIds.push(p.defId);
+    if(PROPOSAL_POOL.some(x=>x.id===p.defId)){if(!G.soldProposals)G.soldProposals=[];if(!G.soldProposals.includes(p.defId))G.soldProposals.push(p.defId);}
+    G.props=G.props.filter(x=>x.id!==pid);
+    addLog('💴',`<strong>${p.name}</strong> を ${fmt(sp)} で売却（手数料${fmt(fee)}${tax>0?'・短期課税'+fmt(tax):''}・総合収支${totalPnl>=0?'+':''}${fmt(totalPnl)}）`,'prop');
+    render();
+  }}]);
+}
+function fireBigEvent(type){
+  if(type==='earthquake'){
+    // 即時効果：修繕費1500万＋評価額-15%
+    const repair=15000000;
+    const fromReserve=Math.min(G.reserve,repair);
+    G.reserve-=fromReserve;
+    G.cash-=repair-fromReserve;
+    G.props.forEach(p=>{p.price=Math.floor(p.price*0.85);});
+    // 継続効果：入居率-30%を6ヶ月
+    G.quakeMonthsLeft=6;
+    G.props.forEach(p=>{p.occ=Math.max(.1,p.occ-.30);});
+    addLog('🌏','<strong>【大地震発生】</strong> 修繕費1500万円を強制徴収。全物件評価額-15%。入居率-30%が6ヶ月続く。','event');
+    setTimeout(()=>addTanaka('…こんな日が来るとは。でも、不動産をやっている以上、いつかこういう日が来るとわかっていました。今は耐えてください。必ず立て直せます。'),800);
+    modal('🌏 大地震発生',`大規模地震が発生し、保有物件に甚大な被害が出ました。<br><br><span style="color:var(--red);font-weight:700">修繕費：¥1,500万（積立金 ${fmt(fromReserve)} 充当・現金 ${fmt(repair-fromReserve)} 追加負担）</span><br><span style="color:var(--red);font-weight:700">全物件：評価額 -15%</span><br><span style="color:var(--red);font-weight:700">入居率 -30%　← 今後6ヶ月間継続</span><br><br>ここから立て直せるか。`,[{l:'覚悟を決める',c:'dan',f:()=>render()}]);
+  } else {
+    // 即時効果：評価額-10%＋ローン返済+20%
+    G.props.forEach(p=>{
+      p.price=Math.floor(p.price*0.90);
+      if(p.loan&&p.loan.rem>0)p.loan.mo=Math.floor(p.loan.mo*1.20);
+    });
+    // 継続効果：入居率-50%を6ヶ月
+    G.crisisMonthsLeft=6;
+    G.props.forEach(p=>{p.occ=Math.max(.1,p.occ-.50);});
+    addLog('📉','<strong>【金融危機】</strong> 全物件評価額-10%。ローン返済額+20%。入居率-50%が6ヶ月続く。','event');
+    setTimeout(()=>addTanaka('25年この仕事をしていますが、こういう波は必ず来るんです。焦って売ると損が確定します。じっと持ち続ける勇気が、今一番大事です。'),800);
+    modal('📉 金融危機勃発',`世界的な金融危機が発生し、不動産市場が急速に冷え込みました。<br><br><span style="color:var(--red);font-weight:700">全物件：評価額 -10%</span><br><span style="color:var(--red);font-weight:700">ローン返済額 +20%（ローン保有物件のみ）</span><br><span style="color:var(--red);font-weight:700">入居率 -50%　← 今後6ヶ月間継続</span><br><br>嵐が過ぎ去るまで耐え抜けるか。`,[{l:'耐え抜く',c:'dan',f:()=>render()}]);
+  }
+}
+
+function fireEvent(ev,p){const isSelf=(MGMT[p.mgmt]||MGMT.collect).id==='self';const _opts=ev.selfOpts&&isSelf?ev.selfOpts:ev.opts;const opts=typeof _opts==='function'?_opts(p):_opts;
+  // 田中さん：建物イベント時のアドバイス（自主管理物件は除く・30%の確率）
+  if(ev.cat==='bld'&&p.mgmt!=='self'&&Math.random()<0.3){setTimeout(()=>addTanaka('修繕は後回しにしないほうがいいですよ。経験上。'),600);}
+  if(ev.type==='auto'){if(ev.effect.length>=2)ev.effect(p,0,isSelf);else ev.effect(p,0);addLog(ev.icon,`<span class="etag ${CAT_CLS[ev.cat]}">${CAT_LBL[ev.cat]}</span> <strong>${ev.title}</strong>　${ev.desc(p).replace(/<[^>]*>/g,'')}`);if(pendingEvents.length>0){const next=pendingEvents.shift();setTimeout(()=>processQueue(next),200);}else render();}else{
+  const showEventModal=()=>{
+    const choiceBtns=(opts||ev.opts).map((opt,i)=>({l:opt,c:i===0?'pri':'',f:()=>{
+      const b=document.getElementById('event-return-banner');if(b)b.remove();
+      const cashBefore=G.cash;const reserveBefore=G.reserve;
+      if(ev.effect.length>=3)ev.effect(p,i,isSelf);else ev.effect(p,i);
+      // effect実行でG.cash・G.reserveが減少した分をtotalSpentに積算
+      const spent=Math.max(0,(cashBefore-G.cash)+(reserveBefore-G.reserve));
+      if(spent>0)p.totalSpent=(p.totalSpent||0)+spent;
+      addLog(ev.icon,`<span class="etag ${CAT_CLS[ev.cat]}">${CAT_LBL[ev.cat]}</span> <strong>${ev.title}</strong>：「${opt.replace(/（.*?）/g,'')}」を選択`);if(pendingEvents.length>0){setTimeout(()=>{const next=pendingEvents.shift();processQueue(next);},300);}else render();}}));
+    const checkBtn={l:'📊 財務を確認する',f:()=>{
+      closeModal();
+      sw('tax');
+      // 既存バナーがあれば削除してから追加（重複防止）
+      const old=document.getElementById('event-return-banner');
+      if(old)old.remove();
+      const banner=document.createElement('div');
+      banner.id='event-return-banner';
+      banner.style.cssText='position:fixed;top:98px;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#1a4a7a;color:#fff;padding:10px 14px;font-size:12px;font-weight:700;z-index:30;display:flex;justify-content:space-between;align-items:center;cursor:pointer;';
+      banner.innerHTML=`<span>⚡ ${ev.title}（${p.name}）の対応待ち</span><span style="background:#fff;color:#1a4a7a;padding:4px 10px;border-radius:4px;font-size:11px">戻って選択する →</span>`;
+      banner.onclick=()=>{banner.remove();showEventModal();};
+      document.getElementById('app').prepend(banner);
+    }};
+    modal(ev.icon+' '+ev.title+(isSelf?' 【自主管理】':''),ev.desc(p)+'<br><br>どう対応しますか？',[checkBtn,...choiceBtns]);
+  };
+  showEventModal();}}
+let pendingEvents=[];
+function processQueue(item){if(item.type==='arrears')triggerArrears(item.p);else if(item.type==='arrears_continue')continueArrears(item.p);else fireEvent(item.ev,item.p);}
+function nextMonth(){
+  if(G.gameOver||G.cleared)return;
+  if(!document.getElementById('ov').classList.contains('hid'))return;
+  if(document.getElementById('event-return-banner'))return; // イベント対応待ち中は進めない
+  let inc=0,rep=0;
+  G.props.forEach(p=>{
+    if(p.vacancyMonths>0){p.vacancyMonths--;if(p.vacancyMonths===0)addLog('🏠',`<strong>${p.name}</strong> 入居者が決まりました！家賃収入が始まります。`,'prop');}
+    if(p.arrears===0&&p.vacancyMonths===0){const ci=calcIncome(p);inc+=ci.net;p.totalRentIncome=(p.totalRentIncome||0)+ci.net;}
+    if(p.loan&&p.loan.rem>0){const r=Math.min(p.loan.mo,p.loan.rem);rep+=r;p.loan.rem=Math.max(0,p.loan.rem-r);G.debt=Math.max(0,G.debt-r);if(p.loan.rem<=0)addLog('🎊',`<strong>${p.name}</strong> ローン完済！`,'prop');}
+    p.price=Math.floor(p.price*(1+p.appr/12));p.age+=1/12;p.heldMonths=(p.heldMonths||0)+1;
+    if(p.cooldown){Object.keys(p.cooldown).forEach(k=>{if(p.cooldown[k]>0)p.cooldown[k]--;});}
+    const m=MGMT[p.mgmt]||MGMT.collect;
+    if(p.arrears===0&&p.vacancyMonths===0){const drift=m.id==='self'?(Math.random()-.48)*.08:(Math.random()-.44)*.05;p.occ=Math.max(.3,Math.min(1,p.occ+drift));}
+    if(p.mgmt==='collect'&&p.vacancyMonths===0){p.collectMonths=(p.collectMonths||0)+1;if(p.collectMonths===TRUST_MONTHS)setTimeout(()=>toast(`🏆 ${p.name} が集金管理24ヶ月達成！特別提案が届く可能性があります`),500);}
+  });
+  const mr=calcMonthlyReserve();G.reserve+=mr;G.cash-=mr;
+  const tax=calcMonthlyTax();G.cash-=tax;
+  const cf=inc-rep-mr-tax;G.cash+=inc-rep;// cashへの反映はinc-rep（mrは既に引き済み）
+  G.month++;if(G.month>12){G.month=1;G.year++;}
+  // ── 継続ダメージ処理 ──
+  if(G.quakeMonthsLeft>0){G.quakeMonthsLeft--;G.props.forEach(p=>{p.occ=Math.max(.1,p.occ-.05);});if(G.quakeMonthsLeft>0)addLog('🌏',`<strong>【余震継続】</strong> 入居率がさらに低下。あと${G.quakeMonthsLeft}ヶ月続きます。`,'event');else addLog('🌏','<strong>【余震終息】</strong> 地震の影響が落ち着いてきました。入居者の呼び戻しに注力を。','event');}
+  if(G.crisisMonthsLeft>0){G.crisisMonthsLeft--;G.props.forEach(p=>{p.occ=Math.max(.1,p.occ-.05);});if(G.crisisMonthsLeft>0)addLog('📉',`<strong>【金融危機継続】</strong> 市場の冷え込みが続いています。あと${G.crisisMonthsLeft}ヶ月続きます。`,'event');else addLog('📉','<strong>【金融危機終息】</strong> 市場が底を打ちました。ここからの立て直しが勝負です。','event');}
+  if(G.props.length>0){
+    // 次に買える物件を探してマイルストーン表示
+    const nextProp=([...DEFS,...(isPremPack()?PACK_DEFS:[])]).filter(d=>{
+      if(G.props.find(p=>p.defId===d.id))return false;
+      if((G.soldDefIds||[]).includes(d.id))return false;
+      return true;
+    }).sort((a,b)=>Math.floor(a.price*(1-a.lr))-Math.floor(b.price*(1-b.lr)))[0];
+    let milestoneHtml='';
+    if(nextProp&&!G.cleared){
+      const down=Math.floor(nextProp.price*(1-nextProp.lr));
+      const shortage=down-G.cash;
+      if(shortage>0&&cf>0){
+        const months=Math.ceil(shortage/cf);
+        milestoneHtml=`<br><span style="color:#b8860b;font-size:11px">🎯 頭金まであと <strong>${fmt(shortage)}</strong>（目標まで約 <strong>${months}ヶ月</strong>）</span>`;
+      }else if(shortage<=0){
+        milestoneHtml=`<br><span style="color:var(--green);font-size:11px">✅ ${nextProp.icon}${nextProp.name}の頭金が貯まりました！今すぐ購入できます</span>`;
+      }
+    }
+    addLog('📅',`今月も家賃が入りました。CF <strong style="color:${cf>=0?'var(--green)':'var(--red)'}">${fmtM(cf)}</strong>${milestoneHtml}`,'monthly');
+    // 田中さん：初めてCFがプラスになった月
+    if(cf>0&&!G.firstCFPlus){G.firstCFPlus=true;setTimeout(()=>addTanaka('黒字になりましたね。最初の一歩、おめでとうございます。これが積み重なっていくんです。'),200);}
+  }
+  else addLog('📅','物件なし。市場から購入しましょう。','monthly');
+  try{localStorage.setItem(SAVE_SLOTS[0],JSON.stringify({...G,savedAt:new Date().toISOString()}));}catch(e){}
+
+  if(G.cash<0&&netAsset()<0){G.negMonths++;if(G.negMonths>=3){G.gameOver=true;showGameOver();return;}else toast(`⚠️ 純資産がマイナス！あと${3-G.negMonths}ヶ月で破産します`);}else{if(G.negMonths>0){G.survivedCrisis=true;G.crisisCount=(G.crisisCount||0)+1;}G.negMonths=0;if(G.cash<0)toast('⚠️ 手持ち資金がマイナスです。物件の売却を検討してください。');}
+  if(G.cash<500000&&G.cash>=0)G.cashCrisis=true;
+  if(netAsset()>=GOAL&&G.props.length>=4&&!G.cleared){G.cleared=true;showCleared();return;}
+  if(netAsset()>=GOAL&&G.props.length<4&&!G.cleared&&!G._propHintShown){
+    G._propHintShown=true;
+    setTimeout(()=>addTanaka(`純資産1億を突破しましたね。ただ…クリア条件は「4棟以上保有」も必要です。あと${4-G.props.length}棟、物件を増やしてください。`),400);
+  }
+  checkTitles();
+  // ── ランクアップ検知・課金提案 ──
+  {const rk=rank();const RANK_ORDER=['F','E','D','C','B','A','S'];
+  if(RANK_ORDER.indexOf(rk)>RANK_ORDER.indexOf(G.lastRank||'E')){
+    G.lastRank=rk;
+    const msgs={
+      D:{icon:'🎉',msg:'ランクD到達！純資産500万を突破しました。次のステップへ進みましょう。',plan:null,tanaka:'500万円。着実ですね。この調子で続けましょう。'},
+      C:{icon:'🏆',msg:'ランクC到達！純資産2000万を突破。<br><br>次の物件まで時間がかかると感じたら…',plan:'speed',tanaka:'2000万円ですか。…最初にお会いしたとき、なんとなくわかったんです。この方は本物だと。'},
+      B:{icon:'🥈',msg:'ランクB到達！純資産5000万。1億まであと半分です。<br><br>プレミアム物件で一気に駆け上がりませんか？',plan:'prem',tanaka:'5000万円。もう私が教えることは、あまり残っていないかもしれませんね。'},
+      A:{icon:'🎊',msg:'ランクA到達！純資産1億を突破しました。<br><br>称号の刻印はお済みですか？',plan:'title',tanaka:'1億円。…担当として言わせてください。あなたと一緒に仕事ができて、よかったです。'},
+      S:{icon:'👑',msg:'ランクS到達！純資産3億を達成しました。真の不動産王です。',plan:null},
+    };
+    const m=msgs[rk];
+    if(m){
+      setTimeout(()=>{
+        const btns=[{l:'閉じる'}];
+        if(m.plan==='prem')btns.push({l:'🔓 プレミアム物件を見る',c:'pri',f:()=>{sw('market');}});
+        if(m.plan==='title')btns.push({l:'🏅 称号を確認する',c:'pri',f:()=>sw('title')});
+        modal(m.icon+' ランクアップ！',m.msg,btns);
+        if(m.tanaka)addTanaka(m.tanaka);
+      },500);
+    }
+  }}
+  // ── どんでん返しイベントチェック ──
+  {const na=netAsset();
+  if(!G.bigEvent1Fired&&na>=70000000){
+    G.bigEvent1Fired=true;
+    G.bigEvent1Type=Math.random()<0.5?'earthquake':'financial';
+    fireBigEvent(G.bigEvent1Type);
+    return;
+  }
+  if(G.bigEvent1Fired&&!G.bigEvent2Fired&&na>=80000000){
+    G.bigEvent2Fired=true;
+    const type2=G.bigEvent1Type==='earthquake'?'financial':'earthquake';
+    fireBigEvent(type2);
+    return;
+  }}
+  // 特別提案チェック（フラグは表示後に永続セット、毎月リセットしない）
+  {const prop=checkProposal();if(prop){addTanaka('実は…あなただけにお見せしたい物件があります。');showProposal(prop);return;}}
+  const arrearsProps=G.props.filter(p=>p.arrears>0);const newItems=[];
+  const firedThisMonth=new Set(); // 同月内の同一イベントタイトル重複防止
+  G.props.forEach(p=>{if(p.arrears>0||p.vacancyMonths>0)return;const m=MGMT[p.mgmt]||MGMT.collect;let rate=(p.eventRate||.28)*m.eventMult;
+  if(p.occ<0.5)rate*=0.6;if(Math.random()<rate){const ac=m.arrearsOk?0.10:0;if(Math.random()<ac){newItems.push({type:'arrears',p});}else{
+    let pool=EVENTS.filter(ev=>{
+      if(ev.title==='騒音クレーム'&&p.noiseResolved)return false;
+      if(ev.title==='雨漏り発生'&&p.leakResolved)return false;
+      if(ev.title==='外壁劣化'&&p.wallResolved)return false;
+      if(p.cooldown&&p.cooldown[ev.title]>0)return false; // クールダウン中は除外
+      if(firedThisMonth.has(p.id+':'+ev.title))return false; // 同月・同物件・同イベント重複防止
+      if(!m.arrearsOk&&ev.cat==='ten')return false;
+      if(p.type==='PARK'){if(ev.types){return ev.types.includes('PARK');}return ev.cat==='ext';}
+      if(ev.types){return ev.types.includes(p.type);}
+      return ev.cat!=='pack';
+    });
+    if(pool.length>0){const ev=pool[Math.floor(Math.random()*pool.length)];firedThisMonth.add(p.id+':'+ev.title);newItems.push({type:'event',ev,p});}}}});
+  const queue=[...arrearsProps.map(p=>({type:'arrears_continue',p})),...newItems].slice(0,2);
+  if(G.skipNextEvent&&queue.length>0){G.skipNextEvent=false;addLog('🎯','<strong>イベントスキップ</strong>を使用。今月のイベントをスキップしました。');render();return;}
+  if(queue.length>0){pendingEvents=queue.slice(1);render();setTimeout(()=>processQueue(queue[0]),200);return;}
+  render();
+}
+// 3ヶ月まとめ進め用（イベント自動処理・モーダルなし）
+function nextMonthAuto(){
+  if(G.gameOver||G.cleared)return;
+  let inc=0,rep=0;
+  G.props.forEach(p=>{
+    if(p.vacancyMonths>0){p.vacancyMonths--;return;}
+    if(p.arrears===0){const ci=calcIncome(p);inc+=ci.net;p.totalRentIncome=(p.totalRentIncome||0)+ci.net;}
+    if(p.loan&&p.loan.rem>0){const r=Math.min(p.loan.mo,p.loan.rem);rep+=r;p.loan.rem=Math.max(0,p.loan.rem-r);G.debt=Math.max(0,G.debt-r);}
+    p.price=Math.floor(p.price*(1+p.appr/12));p.age+=1/12;p.heldMonths=(p.heldMonths||0)+1;
+    if(p.cooldown){Object.keys(p.cooldown).forEach(k=>{if(p.cooldown[k]>0)p.cooldown[k]--;});}
+    const m=MGMT[p.mgmt]||MGMT.collect;
+    if(p.arrears===0&&p.vacancyMonths===0){const drift=m.id==='self'?(Math.random()-.48)*.08:(Math.random()-.44)*.05;p.occ=Math.max(.3,Math.min(1,p.occ+drift));}
+    if(p.mgmt==='collect'&&p.vacancyMonths===0)p.collectMonths=(p.collectMonths||0)+1;
+  });
+  const mr=calcMonthlyReserve();G.reserve+=mr;G.cash-=mr;
+  const tax=calcMonthlyTax();G.cash-=tax;
+  const cf=inc-rep-mr-tax;G.cash+=inc-rep;
+  G.month++;if(G.month>12){G.month=1;G.year++;}
+  if(G.props.length>0)addLog('📅',`収入 <strong>${fmt(inc)}</strong>　返済 ${fmt(rep)}　積立 ${fmt(mr)}　固定資産税 ${fmt(tax)}　実質CF <strong style="color:${cf>=0?'var(--green)':'var(--red)'}">${fmtM(cf)}</strong>`,'monthly');
+  // 田中さん：初めてCFがプラスになった月
+  if(cf>0&&!G.firstCFPlus){G.firstCFPlus=true;addTanaka('黒字になりましたね。最初の一歩、おめでとうございます。これが積み重なっていくんです。');}
+  if(G.cash<0&&netAsset()<0){G.negMonths++;if(G.negMonths>=3){G.gameOver=true;return;}}else{if(G.negMonths>0){G.survivedCrisis=true;G.crisisCount=(G.crisisCount||0)+1;}G.negMonths=0;}
+  if(G.cash<500000&&G.cash>=0)G.cashCrisis=true;
+  if(netAsset()>=GOAL&&G.props.length>=4&&!G.cleared){G.cleared=true;}
+  checkTitles();
+  try{localStorage.setItem(SAVE_SLOTS[0],JSON.stringify({...G,savedAt:new Date().toISOString()}));}catch(e){}
+}
+function showGameOver(){const na=netAsset();const months=(G.year-2025)*12+G.month;modal('💸 純資産マイナス・破産',`純資産がマイナスの状態が3ヶ月続き、経営が破綻しました。<br><br><strong>プレイ期間：</strong>${G.year}年${G.month}月（${months}ヶ月）<br><strong>純資産：</strong>${fmt(na)}<br><strong>保有物件：</strong>${G.props.length}件<br><br>ローン返済・修繕費が膨らみ純資産がマイナスになると破産します。`,[{l:'リトライする',c:'pri',f:()=>doResetGame()},{l:'このまま見る'}]);render();}
+function showCleared(){
+  const na=netAsset();
+  const months=(G.year-2025)*12+G.month;
+
+  // エンディング種別
+  const ending=months<=70?'堅実大家':months<=120?'着実大家':'大家見習い卒業';
+  const endingDesc={
+    '堅実大家':'着実な経営判断で1億を掴み取りました。',
+    '着実大家':'じっくりと経営を積み重ねた結果です。',
+    '大家見習い卒業':'多くの困難を乗り越えての達成です。',
+  }[ending];
+
+  // プレイスタイル分析
+  const usedLoan=G.logs.some(l=>l.html&&l.html.includes('ローン購入'));
+  const usedSelf=G.props.some(p=>p.mgmt==='self')||G.logs.some(l=>l.html&&l.html.includes('自主管理'));
+  const isFast=months<=60;
+  const hasPrem=G.props.some(p=>PROPOSAL_POOL.some(x=>x.id===p.defId));
+
+  // 別ルート提案
+  const challenges=[];
+  if(usedLoan)challenges.push({icon:'💴',label:'現金購入縛り',desc:'ローンを一切使わずに1億を目指す'});
+  if(!usedSelf)challenges.push({icon:'🔧',label:'自主管理縛り',desc:'管理会社なしで全物件を自主管理'});
+  if(!isFast)challenges.push({icon:'⚡',label:'スピードラン',desc:'120ヶ月以内に1億達成に挑戦'});
+  if(!hasPrem)challenges.push({icon:'👑',label:'プレミアム物件解放',desc:'プレミアム物件を使って挑戦'});
+  challenges.push({icon:'🏪',label:'プレミアム',desc:'商店街・民泊・駐車場で異業態経営'});
+
+  const challengeHtml=challenges.slice(0,3).map(c=>
+    `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <span style="font-size:18px">${c.icon}</span>
+      <div><div style="font-size:12px;font-weight:700">${c.label}</div>
+      <div style="font-size:10px;color:var(--muted)">${c.desc}</div></div>
+    </div>`
+  ).join('');
+
+  modal(`🏠 大家への道　完結`,
+    `<div style="text-align:center;padding:4px 0 12px">
+  <div style="font-size:28px;margin-bottom:6px">🏠</div>
+  <div style="font-size:16px;font-weight:700;margin-bottom:2px">「大家への道」</div>
+  <div style="font-size:11px;color:var(--muted)">エンディング：${ending}</div>
+</div>
+<div style="font-size:12px;color:var(--muted);line-height:1.9;margin-bottom:12px;padding:10px 12px;background:var(--accent);border-radius:8px;border:1px solid var(--border)">あなたは300万円から始まり、4棟以上を保有した状態で<strong style="color:var(--text)">純資産1億円</strong>を達成しました。<br>${endingDesc}<br>これが「大家になろう」の結末です。</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;text-align:center">
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px 4px"><div style="font-size:9px;color:var(--muted)">プレイ期間</div><div style="font-size:13px;font-weight:700">${months}ヶ月</div></div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px 4px"><div style="font-size:9px;color:var(--muted)">最終純資産</div><div style="font-size:13px;font-weight:700">${fmt(na)}</div></div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px 4px"><div style="font-size:9px;color:var(--muted)">保有物件</div><div style="font-size:13px;font-weight:700">${G.props.length}件</div></div>
+</div>
+<div style="background:linear-gradient(135deg,#1a4a7a,#2d6a9f);border-radius:8px;padding:12px 14px;margin-bottom:10px;color:#fff">
+  <div style="font-size:11px;font-weight:700;margin-bottom:4px">🏗️ 次回作　予告</div>
+  <div style="font-size:13px;font-weight:700;margin-bottom:6px">「土地を持つ大家へ」</div>
+  <div style="font-size:11px;opacity:.85;line-height:1.6">不動産の世界はまだ続く。<br>次は違う立場から、同じ世界を歩く。</div>
+</div>
+<div style="font-size:11px;font-weight:700;color:var(--muted);margin:0 0 4px">🎯 別ルートで再挑戦</div>
+${challengeHtml}`,
+    [{l:'もう一度プレイする',f:()=>doResetGame()},
+     {l:'次回作の通知を受け取る',c:'pri',f:()=>modal('📩 次回作リリース通知','次回作「土地を持つ大家へ」のリリース時にお知らせします。<br><br>下記メールアドレスにご連絡します。<br><br><input id="notify-email" type="email" placeholder="メールアドレスを入力" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;margin-top:4px">',
+       [{l:'キャンセル'},{l:'登録する',c:'pri',f:()=>{const email=document.getElementById('notify-email')?.value;if(!email||!email.includes('@')){toast('メールアドレスを正しく入力してください');return;}try{const list=JSON.parse(localStorage.getItem('ooya_notify')||'[]');if(!list.includes(email)){list.push(email);localStorage.setItem('ooya_notify',JSON.stringify(list));}toast('📩 登録しました。リリースをお待ちください！');}catch(e){toast('登録できませんでした');} }}])}]);
+  addTanaka('やりましたね。…私、不動産の仕事を25年やっています。こういう瞬間のために、この仕事を続けているんだと思います。本当におめでとうございます。');
+  render();
+}
+function render(){
+  const rk=rank();const na=netAsset();
+  const goalPct=G.cleared?100:Math.min(100,Math.round(na/GOAL*100));
+  const propCount=G.props.length;
+  const propLabel=G.cleared?`✅ 達成`:`${propCount}/4棟`;
+  const goalLabel=G.cleared?`✅ 達成`:`${goalPct}%`;
+  // ローン枠表示
+  const loanLimit=calcLoanLimit();
+  const loanRemaining=calcLoanRemaining();
+  const loanPct=loanLimit>0?Math.round((G.debt/loanLimit)*100):0;
+  const mi=G.props.reduce((s,p)=>{if(p.arrears>0||p.vacancyMonths>0)return s;return s+calcIncome(p).net;},0);
+  const ml=G.props.reduce((s,p)=>s+(p.loan?Math.min(p.loan.mo,p.loan.rem):0),0);
+  const mr=calcMonthlyReserve();const cf=mi-ml-mr-calcMonthlyTax();
+  document.getElementById('dl').textContent=G.year+'年'+G.month+'月';
+  document.getElementById('kc').textContent=fmt(G.cash);
+  document.getElementById('kc').className='kval '+(G.cash<0?'red':'gold');
+  document.getElementById('km').textContent=fmtM(cf);
+  document.getElementById('km').style.color=cf>=0?'#6fcf97':'#ff7675';
+  document.getElementById('ka').textContent=fmt(na);
+  document.getElementById('k-reserve').textContent=fmt(G.reserve);
+  document.getElementById('k-debt').textContent=fmt(G.debt);
+  document.getElementById('k-goal').innerHTML=G.cleared?`✅ 達成`:`<span style="font-size:10px;display:block;line-height:1.4">💰${goalLabel}</span><span style="font-size:10px;display:block;line-height:1.4;color:${propCount>=4?'#6fcf97':'#ffeaa7'}">🏠${propLabel}</span>`;
+  // ローン枠バー更新
+  const loanBarEl=document.getElementById('loan-bar-fill');
+  const loanLblEl=document.getElementById('loan-bar-label');
+  if(loanBarEl){loanBarEl.style.width=Math.min(100,loanPct)+'%';loanBarEl.style.background=loanPct>=90?'#ff7675':loanPct>=70?'#ffeaa7':'#6fcf97';}
+  if(loanLblEl){loanLblEl.textContent=`融資枠 ${fmt(loanRemaining)} 残（上限${fmt(loanLimit)}）`;}
+  const advBtn=document.getElementById('adv-btn');
+  if(G.gameOver){advBtn.textContent='💸 ゲームオーバー（タップして確認）';advBtn.className='advbtn danger';advBtn.onclick=showGameOver;}
+  else if(G.cleared){advBtn.textContent='🎉 目標達成！（タップして確認）';advBtn.className='advbtn';advBtn.onclick=showCleared;}
+  else{advBtn.textContent='▶ 1ヶ月進める';advBtn.className='advbtn';advBtn.onclick=nextMonth;}
+  const ol=document.getElementById('owned-list');
+  if(!G.props.length){ol.innerHTML=`<div class="empty">物件がありません<br>「物件市場」から最初の物件を購入しましょう<br><br>初期資金：${fmt(G.cash)}　ランク：<span class="rank r${rk}">${rk}</span><br>目標：<strong>4棟以上保有 ＋ 純資産1億円</strong></div>`;}
+  else{
+    const stepLabels=['','📩 催促中','📋 内証済','⚖️ 要弁護士'];
+    const negBanner=G.cash<0&&netAsset()<0?`<div class="danger-banner">⚠️ 純資産がマイナスです！あと${3-G.negMonths}ヶ月で破産します。物件の売却を検討してください。</div>`:G.cash<0?`<div class="danger-banner" style="background:#fff8e1;border-color:#ffe082;color:#8b6914">⚠️ 手持ち資金がマイナスです。純資産はプラスのため破産しませんが、売却等で現金を確保してください。</div>`:'';
+    ol.innerHTML=negBanner+G.props.map(p=>{
+      const m=MGMT[p.mgmt]||MGMT.collect;const ci=calcIncome(p);const inc=(p.arrears>0||p.vacancyMonths>0)?0:ci.net;
+      const lr=p.loan?Math.min(p.loan.mo,p.loan.rem):0;
+      const res=Math.floor(p.price*(p.reserveRate||.10)/12);const net=inc-lr-res;
+      const occRooms=Math.round(p.occ*p.units);const occ=Math.round(occRooms/p.units*100);const fc=occ>=80?'':occ>=60?'mid':'low';
+      const mbCls=`mbadge-${m.col}`;
+      const trustPct=m.id==='collect'?Math.min(100,Math.round((p.collectMonths||0)/TRUST_MONTHS*100)):0;
+      const trustBar=m.id==='collect'?`<div class="trust-bar-wrap"><span>管理会社との信頼度（長期ルート）　${p.collectMonths||0}/${TRUST_MONTHS}ヶ月　${trustPct>=100?'✅ 条件達成':trustPct+'%'}</span><div class="trust-bar"><div class="trust-fill" style="width:${trustPct}%"></div></div></div>`:'';
+      return`<div class="pcard" style="${p.arrears>0?'border-color:#f8bbd0;':p.vacancyMonths>0?'border-color:#90caf9;':''}">
+        <div class="phead" style="${p.arrears>0?'background:#fff5f5;':p.vacancyMonths>0?'background:#e3f2fd;':''}">
+          <div><span style="font-size:15px">${p.icon}</span><span class="pname" style="margin-left:4px">${p.name}</span><span class="pbadge">${p.type}</span>${(p.reno||p.gradeEquip||p.gradeFull)?'<span style="font-size:10px;color:var(--gold);margin-left:4px">✨</span>':''}${p.noiseResolved?'<span style="font-size:10px;color:var(--green);margin-left:4px">🔇✅</span>':''}${p.arrears>0?`<span class="arrears-tag">滞納${p.arrears}ヶ月</span>`:''}${p.vacancyMonths>0?`<span style="display:inline-block;font-size:9px;padding:2px 6px;border-radius:3px;background:#e3f2fd;color:#0d47a1;font-weight:700;margin-left:5px;vertical-align:middle">募集中</span>`:''}</div>
+          <div class="peval"><span style="font-size:9px;color:var(--muted);font-weight:400;margin-right:3px">評価額</span>${fmt(p.price)}</div>
+        </div>
+        <div class="mgmt-bar"><span class="${mbCls}">${m.name} ${Math.round(m.rate*100)}%</span><span style="font-weight:700;color:${occ>=80?'var(--green)':occ>=60?'#e65100':'var(--red)'}">入居率 ${occ}%</span></div>
+        ${trustBar}
+        ${p.vacancyMonths>0?`<div class="vacancy-bar"><span>入居募集中</span><span>あと約${p.vacancyMonths}ヶ月で入居開始予定</span></div>`:''}
+        ${p.arrears>0?`<div class="arrears-bar"><span>${stepLabels[p.arrearsStep]||''}</span><span>累計未収：<strong>${fmt(p.arrears*p.rent)}</strong></span></div>`:''}
+        <div class="mets">
+          <div class="mt"><div class="mtl">月収入</div><div class="mtv ${p.arrears>0||p.vacancyMonths>0?'b':'g'}">${p.arrears>0?'未収':p.vacancyMonths>0?'募集中':fmt(inc)}</div></div>
+          <div class="mt"><div class="mtl">返済</div><div class="mtv r">${lr>0?fmt(lr):'—'}</div></div>
+          <div class="mt"><div class="mtl">実質CF</div><div class="mtv ${net>=0?'g':'r'}">${fmtM(net)}</div></div>
+        </div>
+        <div class="occw">
+          <div class="occr"><span>入居率 ${occ}%（${occRooms}/${p.units}室）</span>${p.loan&&p.loan.rem>0?`<span style="font-size:9px;color:var(--red)">残債 ${fmt(p.loan.rem)}</span>`:''}</div>
+          <div class="occb"><div class="occf ${fc}" style="width:${occ}%"></div></div>
+        </div>
+        <div class="reservew"><span>修繕積立</span><span>${fmt(res)}/月　（プール ${fmt(G.reserve)}）</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 0">
+          <button class="pacts-toggle" id="pact-btn-${p.id}" onclick="toggleActions(${p.id})">アクション ▼</button>
+          <span style="font-size:9px;color:var(--muted)">空室対策　グレードアップ　売却</span>
+        </div>
+        <div class="pacts-body" id="pact-${p.id}">
+          <div class="pacts"><button class="pabtn" onclick="doReno(${p.id})">🏠 空室対策</button>${p.type!=='PARK'?`<button class="pabtn" onclick="doGradeUp(${p.id})">✨ グレードアップ</button>`:''}<button class="pabtn" onclick="doChangeMgmt(${p.id})" style="${p.type==='PARK'?'border-right:none':''}">🔄 管理変更</button></div>
+          <div style="padding:8px 12px;border-top:1px solid var(--border)"><button onclick="doSell(${p.id})" style="width:100%;padding:9px;background:none;border:1px solid var(--red);border-radius:6px;font-size:12px;font-weight:700;color:var(--red);cursor:pointer;font-family:'Noto Sans JP',sans-serif;">💴 売却</button></div>
+        </div>
+      </div>`;
+    }).join('')+(G.cleared?`<div style="background:linear-gradient(135deg,#fff9f0,#fff5e8);border:1.5px solid #c9a84c;border-radius:8px;padding:10px 14px;margin-top:4px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">📖</span><div><div style="font-size:11px;color:#8b6914;font-weight:700">第1章　クリア済み</div><div style="font-size:10px;color:#8b6914;margin-top:2px">純資産1億円達成・「大家への道」完</div></div></div>`:`<div style="text-align:right;font-size:11px;color:var(--muted);padding:4px 0 2px">ランク：<span class="rank r${rk}">${rk}</span>　目標まで：${fmt(Math.max(0,GOAL-na))}</div>`);
+  }
+  const proposedDefs=PROPOSAL_POOL.filter(p=>G.proposals.includes(p.id)&&!G.soldProposals?.includes(p.id));
+  const calcYields=(d)=>{
+    // 表面利回り：満室家賃収入 ÷ 物件価格
+    const grossY=((d.rent*d.units*12)/d.price*100).toFixed(1);
+    // CF利回り：(満室月収 - 管理手数料5% - 修繕積立) × 12 ÷ 物件価格
+    const mr=Math.floor(d.price*(d.reserveRate||.10)/12);
+    const cfMonthly=Math.floor(d.rent*d.units*0.95)-mr;
+    const cfY=(cfMonthly*12/d.price*100).toFixed(1);
+    return{grossY,netY:cfY};
+  };
+  const allSoldIds=new Set([...(G.soldDefIds||[]),...(G.soldProposals||[])]);
+  const mkSection=DEFS.map(d=>{const owned=G.props.some(p=>p.defId===d.id)||allSoldIds.has(d.id);const cd=G.cash>=d.price;const dn=Math.floor(d.price*(1-d.lr));const cl=G.cash>=dn;const {grossY,netY}=calcYields(d);const mr=Math.floor(d.price*(d.reserveRate||.10)/12);return`<div class="mi" style="${owned?'opacity:.55;':''}"><div style="display:flex;gap:9px;align-items:flex-start"><div style="font-size:22px">${d.icon}</div><div style="flex:1"><div class="mn">${d.name}${owned?'<span style="font-size:9px;background:#e0e0e0;color:#555;padding:2px 6px;border-radius:3px;font-weight:700;margin-left:6px">購入済み</span>':''}</div><div class="md">${d.desc}</div><div class="mnums"><div class="mnum">${d.units}室</div><div class="mnum">満室月収 <span>${fmt(d.rent*d.units)}</span></div><div class="mnum">積立 <span>${fmt(mr)}/月</span></div></div>${owned?`<div style="font-size:11px;color:var(--muted);padding:4px 0">この物件は購入済みです（1物件1棟まで）。</div><div class="mbot"><div class="mprice" style="color:var(--muted)">${fmt(d.price)}</div></div>`:`<div class="mbot"><div class="mprice">${fmt(d.price)}</div><div class="brow"><button class="bb pri" onclick="buyDirect('${d.id}',false)" ${cd?'':'disabled'}>現金</button><button class="bb blu" onclick="buyLoan('${d.id}',false)" ${cl?'':'disabled'}>ローン</button></div></div>${!cd&&!cl?`<div style="font-size:10px;color:var(--red);margin-top:4px">頭金 ${fmt(dn)} 不足</div>`:''}`}</div></div></div>`;}).join('');
+  let proposalSection='';
+  if(proposedDefs.length>0){
+    const prem=isPremPack();
+    proposalSection=`<div class="premium-divider" style="color:#b8860b">🏆 管理会社からの特別提案</div>`+proposedDefs.map(d=>{const {grossY,netY}=calcYields(d);const canBuy=G.cash+G.reserve>=d.price;const owned=G.props.some(pp=>pp.defId===d.id);const needsReserve=G.cash<d.price&&canBuy;return`<div class="proposal-card" style="${owned?'opacity:.55;':''}"><div class="proposal-head"><div><div class="proposal-from">🏆 管理会社からの特別提案</div><div class="proposal-title">${d.icon} ${d.name}${owned?'<span style="font-size:9px;background:#e0e0e0;color:#555;padding:2px 6px;border-radius:3px;font-weight:700;margin-left:8px">購入済み</span>':''}</div></div><div class="proposal-badge">👑 PREMIUM</div></div><div class="proposal-body"><div class="proposal-stats"><div class="pstat"><div class="pstat-l">室数</div><div class="pstat-v good">${d.units}室</div></div><div class="pstat"><div class="pstat-l">満室月収</div><div class="pstat-v good">${fmt(d.rent*d.units)}</div></div><div class="pstat"><div class="pstat-l">想定CF</div><div class="pstat-v good">${d.cf_note}</div></div></div><div style="font-size:11px;color:#8b6914;line-height:1.5;margin-bottom:8px">${d.desc}</div><div style="font-size:11px;color:#5c4000">購入価格：<strong>${fmt(d.price)}</strong>　<span style="color:var(--red);font-weight:700">現金購入のみ</span>${needsReserve?`　<span style="color:var(--gold);font-weight:700">積立補充 ${fmt(d.price-G.cash)}</span>`:''}</div></div>${owned?`<div class="proposal-lock" style="background:#f5f5f5;border-top:1px solid #e0e0e0"><div style="font-size:11px;color:var(--muted);padding:2px 0">この物件は保有中です（1物件1棟まで）。</div></div>`:prem?`<div class="proposal-lock" style="background:rgba(45,106,79,.06);border-top:1px solid #a8d5b5"><button class="unlock-btn-gold" style="background:${canBuy?'var(--green)':'#aaa'}" onclick="buyDirect('${d.id}',false)" ${canBuy?'':'disabled'}>${canBuy?'💰 '+(needsReserve?'現金＋積立で購入する':'現金で購入する'):'資金不足 '+fmt(d.price)+'必要'}</button></div>`:`<div class="proposal-lock"><div class="lock-msg">この物件はプレミアムプラン限定です。<br>¥980で非公開優良物件を現金購入できます。</div><button class="unlock-btn-gold" onclick="showPremiumUnlock()">🔓 プレミアムプランで解放する</button></div>`}</div>`;}).join('');
+  } else if(G.props.some(p=>p.mgmt==='collect')||G.collectTotal>0){
+    const maxM=getMaxCollectMonths();const cntOk=G.collectTotal>=TRUST_COUNT;const timeOk=maxM>=TRUST_MONTHS;
+    proposalSection=`<div class="premium-divider" style="color:#b8973a">🏆 管理会社との信頼関係</div><div class="trust-panel"><div class="trust-panel-title">特別提案を受け取る条件（どちらかを達成）</div><div class="trust-route ${timeOk?'trust-route-done':''}"><span class="check ${timeOk?'done':''}">${timeOk?'✓':''}</span>長期ルート：集金管理型を1物件で24ヶ月継続　（現在最長 ${maxM}ヶ月）<div class="trust-bar" style="margin-top:4px"><div class="trust-fill" style="width:${Math.min(100,Math.round(maxM/TRUST_MONTHS*100))}%"></div></div></div><div style="margin-top:8px"></div><div class="trust-route ${cntOk?'trust-route-done':''}"><span class="check ${cntOk?'done':''}">${cntOk?'✓':''}</span>件数ルート：集金管理型の物件を累計5件依頼　（現在 ${G.collectTotal}/${TRUST_COUNT}件）<div class="trust-bar" style="margin-top:4px"><div class="trust-fill" style="width:${Math.min(100,Math.round(G.collectTotal/TRUST_COUNT*100))}%"></div></div></div></div>`;
+  }
+  const premSec='';
+  // プレミアムセクション
+  const packSec=isPremPack()
+    ? `<div class="premium-divider" style="color:#2d6a4f">🏪 プレミアム</div>`+PACK_DEFS.map(d=>{const owned=G.props.some(p=>p.defId===d.id)||allSoldIds.has(d.id);const cd=G.cash>=d.price;const dn=Math.floor(d.price*(1-d.lr));const cl=G.cash>=dn;const {grossY,netY}=calcYields(d);const mr=Math.floor(d.price*(d.reserveRate||.10)/12);return`<div class="mi" style="border-color:#a8d5b5${owned?';opacity:.55':''}"><div style="display:flex;gap:9px;align-items:flex-start"><div style="font-size:22px">${d.icon}</div><div style="flex:1"><div class="mn">${d.name} <span style="font-size:9px;background:#e8f5e9;color:#1b5e20;padding:1px 6px;border-radius:3px;font-weight:700;margin-left:4px">プレミアム</span>${owned?'<span style="font-size:9px;background:#e0e0e0;color:#555;padding:1px 6px;border-radius:3px;font-weight:700;margin-left:4px">購入済み</span>':''}</div><div class="md">${d.desc}</div><div class="mnums"><div class="mnum">${d.units}${d.type==='PARK'?'区画':'室'}</div><div class="mnum">満室月収 <span>${fmt(d.rent*d.units)}</span></div><div class="mnum">積立 <span>${fmt(mr)}/月</span></div></div>${owned?`<div style="font-size:11px;color:var(--muted);padding:4px 0">この物件は購入済みです（1物件1棟まで）。</div><div class="mbot"><div class="mprice" style="color:var(--muted)">${fmt(d.price)}</div></div>`:`<div class="mbot"><div class="mprice">${fmt(d.price)}</div><div class="brow"><button class="bb pri" onclick="buyDirect('${d.id}',false)" ${cd?'':'disabled'}>現金</button><button class="bb blu" onclick="buyLoan('${d.id}',false)" ${cl?'':'disabled'}>ローン</button></div></div>${!cd&&!cl?`<div style="font-size:10px;color:var(--red);margin-top:4px">頭金 ${fmt(dn)} 不足</div>`:''}`}</div></div></div>`;}).join('')
+    : `<div class="premium-divider" style="color:#2d6a4f">🏪 プレミアム（¥980）</div><div style="background:#f0faf3;border:1.5px solid #a8d5b5;border-radius:8px;padding:12px 14px;margin-bottom:8px"><div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><span style="font-size:20px">🔒</span><div><div style="font-size:13px;font-weight:700;color:#1b5e20">商店街・民泊・駐車場が解放</div><div style="font-size:11px;color:#2d6a4f;margin-top:2px">住宅以外の業態で戦略の幅が広がります</div></div></div><div style="display:flex;gap:6px;font-size:11px;color:#2d6a4f;margin-bottom:10px"><span>🏪 商店街テナントビル</span><span>🏨 民泊マンション</span><span>🅿️ 駐車場</span></div><button class="unlock-btn" style="background:#2d6a4f;width:100%;padding:11px" onclick="buyPremPack()">🔓 プレミアム ¥980 で解放する</button></div>`;
+  document.getElementById('market-list').innerHTML=mkSection+packSec+proposalSection+premSec;
+  document.getElementById('tax-content').innerHTML=`<div class="info-card" style="display:flex;gap:12px"><div style="flex:1"><div style="font-size:10px;color:var(--muted);margin-bottom:4px">修繕積立金プール</div><div style="font-size:18px;font-weight:700;margin-bottom:4px">${fmt(G.reserve)}</div><div style="font-size:11px;color:var(--muted)">月次積立：${fmt(calcMonthlyReserve())}　修繕・故障時に自動充当</div></div><div style="flex:1;border-left:1px solid var(--border);padding-left:12px"><div style="font-size:10px;color:var(--muted);margin-bottom:4px">純資産</div><div style="font-size:18px;font-weight:700;margin-bottom:4px;color:${na>=0?'var(--green)':'var(--red)'}">${fmt(na)}</div><div style="font-size:11px;color:var(--muted)">目標まで：${fmt(Math.max(0,100000000-na))}</div><div style="font-size:10px;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);line-height:1.7">現金 + 積立 + 物件評価額<br>− 借入残高</div></div></div><div class="lcard"><div class="ltitle">借入・資産状況</div><div class="lrow"><span class="ll">借入残高合計</span><span class="lv r">${fmt(G.debt)}</span></div><div class="lrow"><span class="ll">月次返済（ローン）</span><span class="lv r">${fmt(G.props.reduce((s,p)=>s+(p.loan?Math.min(p.loan.mo,p.loan.rem):0),0))}</span></div><div class="lrow"><span class="ll">月次積立</span><span class="lv r">${fmt(calcMonthlyReserve())}</span></div><div class="lrow"><span class="ll">固定資産税（月割）</span><span class="lv r">${fmt(calcMonthlyTax())}</span></div><div class="lrow"><span class="ll">月次手出し合計</span><span class="lv r">${fmt(G.props.reduce((s,p)=>s+(p.loan?Math.min(p.loan.mo,p.loan.rem):0),0)+calcMonthlyReserve()+calcMonthlyTax())}</span></div><div class="lrow"><span class="ll">手持ち資金</span><span class="lv ${G.cash<0?'r':''}">${fmt(G.cash)}</span></div><div class="lrow"><span class="ll">純資産</span><span class="lv ${na<0?'r':'g'}">${fmt(na)}</span></div></div><div class="lcard"><div class="ltitle">💡 実質CFの計算式</div><div style="font-size:12px;color:var(--muted);line-height:2;padding:4px 0"><span style="color:var(--green);font-weight:700">収入</span>　家賃 × 稼働率 × 管理手数料控除後<br><span style="color:var(--red);font-weight:700">− 返済</span>　毎月のローン返済額<br><span style="color:var(--red);font-weight:700">− 積立</span>　修繕積立金（建物価格 × 積立率 ÷ 12）<br><span style="color:var(--red);font-weight:700">− 税金</span>　固定資産税（評価額 × 1.4% ÷ 12）<br><span style="color:var(--blue);font-weight:700;font-size:13px">＝ 実質CF</span>　手元に残る実質的な月収</div><div style="font-size:10px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px;margin-top:4px">管理手数料：集金管理5%　自主管理0%<br>修繕積立率：物件種類により異なる（築古15%〜新築7%）</div></div>${G.cash<0&&netAsset()<0?`<div class="danger-banner">⚠️ 純資産がマイナス継続中（${G.negMonths}ヶ月目）。あと${3-G.negMonths}ヶ月で破産します。</div>`:G.cash<0?`<div class="danger-banner" style="background:#fff8e1;border-color:#ffe082;color:#8b6914">⚠️ 手持ち資金がマイナスです。純資産はプラスのため破産しません。</div>`:''}`;
+  renderLog();
+  updateBottomBar();
+}
+function showTutorial(){
+  const steps=[
+    {title:'🌅 大家になろう',body:`初期資金 <strong>¥300万円</strong> で不動産経営をスタート。<br><br>目標は<strong>4棟以上保有した状態で純資産1億円</strong>です。物件を買って家賃収入を積み上げていきましょう。<br><br>各物件は<strong>1棟ずつしか購入できません</strong>。どの物件を選ぶか、戦略が重要です。管理会社との信頼を積み上げると非公開の優良物件を紹介してもらえます。`},
+    {title:'🏚️ まず築古アパートを買おう',body:`「物件市場」タブから<strong>築古アパート（¥90万）</strong>を購入しましょう。<br><br>初期資金で現金購入できる唯一の物件です。家賃収入を積み上げて次の物件の頭金を貯めましょう。<br><br>購入時は<strong>集金管理型</strong>がおすすめです。信頼を積み上げると特別な物件を紹介してもらえます。`},
+    {title:'💡 お金の流れを理解しよう',body:`毎月「▶ 1ヶ月進める」を押すと収支が計算されます。<br><br><strong>実質CF</strong>＝月収入 − ローン返済 − 修繕積立<br><br>修繕積立は「財務」タブで確認できます。イベントが発生した際に自動で充当されます。`},
+    {title:'⚡ イベントに備えよう',body:`毎月ランダムでトラブルや好機が発生します。<br><br>・騒音クレーム・給湯器故障・雨漏りなど<br>・近隣再開発・SNSで話題になるなどプラスも<br><br>築古アパートは<strong>イベント発生率が高め</strong>です。積立プールを切らさないようにしましょう。`},
+  ];
+  let step=0;
+  const show=()=>{
+    const s=steps[step];
+    const isLast=step===steps.length-1;
+    modal(s.title,`<div style="font-size:12px;color:var(--muted);margin-bottom:8px">${step+1} / ${steps.length}</div>${s.body}`,[
+      ...(step>0?[{l:'← 前へ',f:()=>{step--;show();}}]:[]),
+      isLast?{l:'はじめる！',c:'pri',f:()=>{sw('market');}}:{l:'次へ →',c:'pri',f:()=>{step++;show();}},
+    ]);
+  };
+  show();
+}
+resetGameState();
+checkExistingSave();
+if(!localStorage.getItem(SAVE_SLOTS[0])){showTutorial();}
+</script>
+
+
+</body></html>
